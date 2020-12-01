@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    
+
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class=" navbar-brand" href="index.html">OuahJax</a>
 
@@ -36,11 +36,67 @@
         </div>
     </nav>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <!-- formulaire connexion -->
+    <div class="container-fluid">
+        <div class="row row-col-6">
+            <!-- connexion-->
+            <div class="col-sm-0 col-md-2 col-lg-1"></div>
+            <div class="col-sm-12 col-md-8 col-lg-4 text-dark">
+                <h3 class="h3 text-center">Connexion</h3>
+                <form onSubmit="return false;">
+                    <div class="form-group">
+                        <label for="con-email">Email</label>
+                        <input class="form-control" type="email" id="con-email" name="con-email" required="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="con-password">Mot de passe</label>
+                        <input class="form-control" type="password" id="con-password" name="con-password" required="" />
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-outline-primary">Se connecter</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-0 col-md-2 col-lg-1"></div>
+            <!-- inscription-->
+            <div class="col-sm-0 col-md-2 col-lg-1"></div>
+            <div class="col-sm-12 col-md-8 col-lg-4 text-dark">
+                <h3 class="h3 text-center">Inscription</h3>
+                <form onSubmit="return false;">
+                    <div class="form-group">
+                        <label for="ins-pseudo">Pseudo</label>
+                        <input class="form-control" type="text" id="ins-pseudo" name="ins-pseudo" required="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ins-email">Email</label>
+                        <input class="form-control" type="email" id="ins-email" name="ins-email" required="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ins-password">Mot de passe</label>
+                        <input class="form-control" type="password" id="ins-password" name="ins-password" required="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ins-conf-password">Confirmer mot de passe</label>
+                        <input class="form-control" type="password" id="ins-conf-password" name="ins-conf-password" required="" />
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-outline-primary">S'inscrire</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-0 col-md-2 col-lg-1"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
     <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
-    
+
 </body>
 
 </html>

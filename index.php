@@ -32,7 +32,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item ">
-                    <a class="nav-link" href="/AJAX/html/admin.html" tabindex="-1" aria-disabled="true">
+                    <a class="nav-link" href="/AJAX/php/login.php" tabindex="-1" aria-disabled="true">
                         <span><i class="fas fa-sign-in-alt"></i></span> Se connecter / Inscription</a>
                 </li>
             </ul>
