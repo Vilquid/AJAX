@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/AJAX/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <title>Forum Projet AJAX</title>
 </head>
@@ -21,18 +21,18 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
 
-                    <a class="nav-link" href="./index.php"><span><i class="fas fa-home"> </i></span class="sr-only"> Accueil</a>
+                    <a class="nav-link" href="/AJAX/index.php"><span><i class="fas fa-home"> </i></span class="sr-only"> Accueil</a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="./php/sujets.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
+                    <a class="nav-link" href="/AJAX/php/sujets.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
                 </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item ">
-                    <a class="nav-link" href="./html/admin.html" tabindex="-1" aria-disabled="true">
+                    <a class="nav-link" href="/AJAX/html/admin.html" tabindex="-1" aria-disabled="true">
                         <span><i class="fas fa-sign-in-alt"></i></span> Se connecter / Inscription</a>
                 </li>
             </ul>
@@ -77,7 +77,7 @@
 
 
 
-    <script src="./bootstrap/css/bootstrap.js"></script>
+    <script src="/AJAX//bootstrap/css/bootstrap.js"></script>
     <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
 
 </body>
