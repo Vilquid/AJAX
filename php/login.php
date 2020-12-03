@@ -5,16 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/AJAX/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/AJAX/css/login.css" rel="stylesheet">
     <title>Connexion / Inscription</title>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class=" navbar-brand" href="index.html">OuahJax</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03"
-            aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -36,13 +35,13 @@
         </div>
     </nav>
 
-    <!-- formulaire connexion -->
-    <div class="container-fluid">
-        <div class="row row-col-6">
+    <div class="container-fluid h-100">
+        <!-- formulaire connexion -->
+        <div class="row row-col-6 h-100 align-items-center">
             <!-- connexion-->
             <div class="col-sm-0 col-md-2 col-lg-1"></div>
             <div class="col-sm-12 col-md-8 col-lg-4 text-dark">
-                <h3 class="h3 text-center">Connexion</h3>
+                <h3 class="display-4 text-center">Connexion</h3>
                 <form onSubmit="return false;">
                     <div class="form-group">
                         <label for="con-email">Email</label>
@@ -61,7 +60,7 @@
             <!-- inscription-->
             <div class="col-sm-0 col-md-2 col-lg-1"></div>
             <div class="col-sm-12 col-md-8 col-lg-4 text-dark">
-                <h3 class="h3 text-center">Inscription</h3>
+                <h3 class="display-4 text-center">Inscription</h3>
                 <form onSubmit="return false;">
                     <div class="form-group">
                         <label for="ins-pseudo">Pseudo</label>
@@ -88,11 +87,9 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
     <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
