@@ -11,7 +11,7 @@
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark" ">
-        <a class=" navbar-brand" href="index.html">OuahJax</a>
+        <a class=" navbar-brand" href="/AJAX/index.php">OuahJax</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,6 +45,8 @@
 
     <h1 id='title1'>Bienvenue sur OuahJax !</h1>
 
+
+
     <div class="container" style="margin-top: 2%;">
         <div class="row">
             <div class="col-12 col-md-8">
@@ -74,8 +76,6 @@
 
         </div>
     </div>
-
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
