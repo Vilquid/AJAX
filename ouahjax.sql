@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3307
--- Généré le : mar. 01 déc. 2020 à 10:13
--- Version du serveur :  10.4.13-MariaDB
--- Version de PHP : 7.3.21
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 03, 2020 at 05:45 PM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `ouahjax`
+-- Database: `ouahjax`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `messages`
+-- Table structure for table `messages`
 --
 
 DROP TABLE IF EXISTS `messages`;
@@ -32,14 +32,17 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_sujet` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `message` text COLLATE utf8_unicode_ci NOT NULL,
   `id_parent` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  KEY `id_parent` (`id_parent`),
+  KEY `id_sujet` (`id_sujet`),
+  KEY `id_user` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Déchargement des données de la table `messages`
+-- Dumping data for table `messages`
 --
 
 INSERT INTO `messages` (`id`, `id_sujet`, `id_user`, `date`, `message`, `id_parent`) VALUES
@@ -51,7 +54,7 @@ INSERT INTO `messages` (`id`, `id_sujet`, `id_user`, `date`, `message`, `id_pare
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sujets`
+-- Table structure for table `sujets`
 --
 
 DROP TABLE IF EXISTS `sujets`;
@@ -59,12 +62,13 @@ CREATE TABLE IF NOT EXISTS `sujets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` text COLLATE utf8_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
-  `date_post` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  `date_post` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Déchargement des données de la table `sujets`
+-- Dumping data for table `sujets`
 --
 
 INSERT INTO `sujets` (`id`, `titre`, `user_id`, `date_post`) VALUES
@@ -74,7 +78,7 @@ INSERT INTO `sujets` (`id`, `titre`, `user_id`, `date_post`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -87,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Déchargement des données de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `password`, `pseudo`, `mail`) VALUES
@@ -98,6 +102,24 @@ INSERT INTO `users` (`id`, `password`, `pseudo`, `mail`) VALUES
 (8, 'didier', 'Didier_pas_le_musée', 'didier@gmail.com'),
 (9, 'virginie', 'Virginie', 'virginie@gmail.com'),
 (10, 'picachu', 'PicachuGamer83', 'picachu@gmail.com');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_parent`) REFERENCES `messages` (`id`),
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_sujet`) REFERENCES `sujets` (`id`),
+  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `sujets`
+--
+ALTER TABLE `sujets`
+  ADD CONSTRAINT `sujets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
