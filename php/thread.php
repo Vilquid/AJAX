@@ -98,19 +98,19 @@
                             <p>D'accord</p>
                         </div>
                         <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3 ">
-                            <div class="px-4 pt-3"> <button type="button" class="btn btn-sm btn-outline-danger">Répondre</button> </div>
+                            <div class="px-4 pt-3"> <button type="button" class="btn btn-sm btn-outline-danger" id="answer">Répondre</button> </div>
                             <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
-
                         </div>
                     </div>
+                    <div id="EditBoxContainer"></div>
                 </div>
 
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button>
+                    <a href="javascript: void(0);" onclick="showEditBox()"><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
                 </div>
-
             </div>
 
+            <script src="/AJAX/js/answer.js"></script>
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
             <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
