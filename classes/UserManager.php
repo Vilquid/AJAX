@@ -7,9 +7,9 @@ class UserManager{
         $this->_bdd = new PDO("mysql:host=localhost;dbname=ouahjax","ouahjax","");
     }
 
-    public function emailExist($mail){
-        $resquest = $this->_bdd->prepare("SELECT count(mail) as exist FROM `users` WHERE mail like ? GROUP BY mail");
-        $resquest->execute([$mail]);
+    public function emailExist($email){
+        $resquest = $this->_bdd->prepare("SELECT count(email) as exist FROM `users` WHERE email like ? GROUP BY email");
+        $resquest->execute([$email]);
         $result = $resquest->fetch(PDO::FETCH_ASSOC);
         return isset($result['exist'])?true:false;
     }
