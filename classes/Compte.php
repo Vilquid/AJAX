@@ -1,10 +1,10 @@
 <?php
 	class COMPTE($data)
 	{
-		var $email;
-		var $password;
-		var $pseudo;
-		var $nb_posts;
+		$email = "";
+		$password = "";
+		$pseudo = "";
+		$nb_posts = 0;
 
 		public function __construct($pseudo = NULL, $email = NULL, $password = NULL, $nb_posts = NULL)
 		{
