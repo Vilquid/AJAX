@@ -98,7 +98,13 @@ spl_autoload_register('chargerClasse');
                     </div>
                     <div class="form-group">
                         <label for="ins-conf-password">Confirmer mot de passe</label>
-                        <input class="form-control" type="password" id="ins-conf-password" name="ins-conf-password" required="" />
+                        <div class="input-group">
+                            <input class="form-control" type="password" id="ins-conf-password" name="ins-conf-password" required="" />
+                            <div class="input-group-append">
+                                <div id="ins-conf-password-icon" class="input-group-text validity-icon"></div>
+                            </div>
+                        </div>
+                        <small id="ins-conf-password-help" class="form-text input-help-message"></small>
                     </div>
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-outline-primary">S'inscrire</button>
