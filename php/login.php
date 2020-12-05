@@ -1,3 +1,11 @@
+<?php
+function chargerClasse($classe)
+{
+    require $_SERVER['DOCUMENT_ROOT']."/AJAX/classes/$classe.php";
+}
+spl_autoload_register('chargerClasse');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +18,7 @@
 </head>
 
 <body>
+    <!-- navbar-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class=" navbar-brand" href="index.html">OuahJax</a>
 
@@ -19,17 +28,17 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
 
-                    <a class="nav-link" href="/AJAX/index.php"><span><i class="fas fa-home"> </i></span class="sr-only">
+                    <a class="nav-link" href="/AJAX/index.php"><span><i class="fas fa-home"> </i></span>
                         Accueil</a>
                 </li>
-
 
                 <li class="nav-item">
                     <a class="nav-link" href="/AJAX/php/sujets.php"><span><i class="fab fa-wpforms"></i></span>
                         Forum</a>
                 </li>
+
             </ul>
 
         </div>
