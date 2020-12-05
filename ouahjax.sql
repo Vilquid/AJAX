@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `password` text COLLATE utf8_unicode_ci NOT NULL,
   `pseudo` text COLLATE utf8_unicode_ci NOT NULL,
-  `mail` text COLLATE utf8_unicode_ci NOT NULL,
+  `email` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `password`, `pseudo`, `mail`) VALUES
+INSERT INTO `users` (`id`, `password`, `pseudo`, `email`) VALUES
 (1, 'sylvain', 'Sylvain', 'sylvain@gmail.com'),
 (2, 'mehdi', 'Mehdi', 'mehdi@gmail.com'),
 (3, 'mathis', 'Mathis', 'mathis@gmail.com'),
