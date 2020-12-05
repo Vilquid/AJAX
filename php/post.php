@@ -51,10 +51,10 @@
         <div class="row">
 
             <div class="container-fluid mt-100">
-                <div class="d-flex flex-wrap justify-content-between">
-                    <div> <button type="button" class="btn btn-shadow btn-wide btn-primary"> <span class="btn-icon-wrapper pr-2 opacity-7"> <i class="fa fa-plus fa-w-20"></i> </span> Nouveau sujet </button> </div>
-                </div>
-                <div class="card mb-3">
+
+                <button type="button" class="btn btn-shadow btn-wide btn-primary"> <span class="btn-icon-wrapper pr-2 opacity-7"> <i class="fa fa-plus fa-w-20"></i> </span> Nouveau sujet </button>
+
+                <div class="card mt-3 mb-3">
                     <div class="card-header pl-0 pr-0">
                         <div class="row no-gutters w-100 align-items-center">
                             <div class="col ml-3">Sujets</div>
