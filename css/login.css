@@ -2,3 +2,7 @@
 html, body{
     height: 90%;
 }
+
+.input-help-message, .validity-icon{
+    display: none;
+}

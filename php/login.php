@@ -1,7 +1,7 @@
 <?php
 function chargerClasse($classe)
 {
-    require $_SERVER['DOCUMENT_ROOT']."/AJAX/classes/$classe.php";
+    require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/$classe.php";
 }
 spl_autoload_register('chargerClasse');
 ?>
@@ -70,14 +70,27 @@ spl_autoload_register('chargerClasse');
             <div class="col-sm-0 col-md-2 col-lg-1"></div>
             <div class="col-sm-12 col-md-8 col-lg-4 text-dark">
                 <h3 class="display-4 text-center">Inscription</h3>
+                <!-- form -->
                 <form onSubmit="return false;">
                     <div class="form-group">
                         <label for="ins-pseudo">Pseudo</label>
-                        <input class="form-control" type="text" id="ins-pseudo" name="ins-pseudo" required="" />
+                        <div class="input-group">
+                            <input class="form-control" type="text" id="ins-pseudo" name="ins-pseudo" required="" />
+                            <div class="input-group-append">
+                                <div id="ins-pseudo-icon" class="input-group-text validity-icon"></div>
+                            </div>
+                        </div>
+                        <small id="ins-pseudo-help" class="form-text input-help-message"></small>
                     </div>
                     <div class="form-group">
                         <label for="ins-email">Email</label>
-                        <input class="form-control" type="email" id="ins-email" name="ins-email" required="" />
+                        <div class="input-group">
+                            <input class="form-control" type="email" id="ins-email" name="ins-email" required="" />
+                            <div class="input-group-append">
+                                <div id="ins-email-icon" class="input-group-text validity-icon"></div>
+                            </div>
+                        </div>
+                        <small id="ins-email-help" class="form-text input-help-message"></small>
                     </div>
                     <div class="form-group">
                         <label for="ins-password">Mot de passe</label>
@@ -102,6 +115,8 @@ spl_autoload_register('chargerClasse');
     </script>
     <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
+    <script src="/AJAX/js/XHR.js" type="text/javascript"></script>
+    <script src="/AJAX/js/login.js" type="text/javascript"></script>
 
 </body>
 
