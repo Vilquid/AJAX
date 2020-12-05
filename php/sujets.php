@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -45,7 +45,7 @@
 
     <div class="container my-3">
         <nav class="breadcrumb ">
-            <h6 class="breadcrumb-item active">Index</h6>
+            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a></h6>
         </nav>
 
         <div class="row">
@@ -63,7 +63,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <h3 class="h5 mb-0"><a href="#">Nom du forum</a></h3>
+                                <h3 class="h5 mb-0"><a href="/AJAX/php/post.php">Nom du forum</a></h3>
                                 <p class="mb-0">Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Velit, praesentium?</p>
                             </td>
@@ -72,7 +72,7 @@
                             </td>
                             <td>0</td>
                             <td>
-                                <h4 class="h6 mb-0"><a href="#"> Nom du forum</a></h4>
+                                <h4 class="h6 mb-0"><a href="#"> Nom du post</a></h4>
                                 <div> par <a href="#">Nom de l'auteur</a></div>
                                 <div> 03 Dec 2020, 16:20</div>
                             </td>
