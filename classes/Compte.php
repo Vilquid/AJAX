@@ -1,18 +1,63 @@
 <?php
-	class COMPTE
+	class COMPTE($data)
 	{
+		var $email;
+		var $password;
+		var $pseudo;
+		var $nb_posts;
 
-		
-		public function __construct($pseudo = NULL, $email = NULL)
+		public function __construct($pseudo = NULL, $email = NULL, $password = NULL, $nb_posts = NULL)
 		{
-			if (!is_null($pseudo) && !is_null($email))
+			if (!is_null($pseudo) && !is_null($email) && !is_null($nb_posts) && !is_null($password))
 			{
-				// Si aucun de $m, $c et $i sont nuls,
-				// c'est forcement qu'on les a fournis
-				// donc on retombe sur le constructeur à 3 arguments
 				$this->pseudo = $pseudo;
 				$this->email = $email;
+				$this->nb_posts = $nb_posts;
+				$this->password = $password;
 			}
+		}
+
+		// CHANGEMENT DES INFOS DE L'UTILISATEUR
+		public function changer_son_pseudo($pseudo)
+		{
+			// $this->pseudo = Récupérer le pseudo dans une variable
+		}
+
+		public function changer_son_email($email)
+		{
+			// $this->email = Récupérer le email dans une variable
+		}
+
+		public function changer_son_password($password)
+		{
+			// $this->password = Récupérer le password dans une variable
+		}
+
+		public function augmenter_le_nb_de_posts($nb_posts)
+		{
+			//$this->nb_posts
+		}
+
+
+		// MISE A JOUR DE LA BASE DE DONNEES
+		public function MAJ_BDD_pseudo($pseudo)
+		{
+			
+		}
+		
+		public function MAJ_BDD_email($email)
+		{
+			
+		}
+		
+		public function MAJ_BDD_password($password)
+		{
+			
+		}
+		
+		public function MAJ_BDD_nb_de_posts($nb_posts)
+		{
+			
 		}
 	}
 	
@@ -21,7 +66,7 @@
 		echo $text;
 	}
 
-	spl_autoload_register(function($COMPTE))
+	spl_autoload_register(function($COMPTE)
 	{
 		include $COMPTE.'php';
 		throw new MissingException("Impossible de charger $COMPTE.");
@@ -48,6 +93,19 @@
 	}
 	catch (Exception $e)
 	{
-		die('Erreur : ' . $e->getMessage());
+		die('Erreur : '.$e->getMessage());
 	}
+
+
+	// On admet que $db est un objet PDO.
+	$request = $db->query('SELECT id, nom, experience, pointvierestant FROM aventurier');
+
+	while ($donnees = $request->fetch(PDO::FETCH_ASSOC)) // Chaque entrée sera récupérée et placée dans un array.
+	{
+	$perso = new Aventurier($donnees);
+
+	echo $perso->nom(), ' a ', $perso->experience(), ' d\'expérience et ', $perso->pointdevierestant(), ' de vie, ';
+
+	}
+
 ?>
