@@ -47,8 +47,7 @@
 
     <div class="container my-3">
         <nav class="breadcrumb ">
-            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a> &nbsp;/&nbsp; <a href="/AJAX/php/post.php">Nom du Forum</a> &nbsp;/&nbsp; <a href="/AJAX/php/thread.php">Les origines de
-                    OuahJax</a> </h6>
+            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a> &nbsp;/&nbsp; <a href="/AJAX/php/post.php">Nom du Forum</a> &nbsp;/&nbsp; <a href="/AJAX/php/thread.php">Les origines de OuahJax</a> </h6>
         </nav>
 
 

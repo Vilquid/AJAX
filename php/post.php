@@ -52,7 +52,7 @@
 
             <div class="container-fluid mt-100">
 
-                <button type="button" class="btn btn-shadow btn-wide btn-primary"> <span class="btn-icon-wrapper pr-2 opacity-7"> <i class="fa fa-plus fa-w-20"></i> </span> Nouveau sujet </button>
+                <a href="/AJAX/php/newpost.php"><button type="button" class="btn btn-shadow btn-wide btn-primary"> <span class="btn-icon-wrapper pr-2 opacity-7" > <i class="fa fa-plus fa-w-20"></i> </span> Nouveau sujet </button></a>
 
                 <div class="card mt-3 mb-3">
                     <div class="card-header pl-0 pr-0">
