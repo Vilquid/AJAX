@@ -47,24 +47,20 @@
 
     <div class="container my-3">
         <nav class="breadcrumb ">
-            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a> &nbsp;/&nbsp; <a href="/AJAX/php/post.php">Nom du Forum</a> &nbsp;/&nbsp; <a href="/AJAX/php/thread.php">Les origines de OuahJax</a> </h6>
+            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a> &nbsp;/&nbsp; <a href="/AJAX/php/post.php">Nom du Forum</a> &nbsp;/&nbsp; <a href="/AJAX/php/thread.php" class="font-weight-bold">Les origines de OuahJax</a> </h6>
         </nav>
 
-
-        <div class="container-fluid mt-100">
-            <div class="row">
-
+        <div class="row">
+            <div class="container-fluid mt-100">
                 <div class="col-md-12">
-                    <div class="card mb-4">
-                        <h2 class="h4 category mb-0 p-4 rounded-top text-light">Les origines de OuahJax</h2>
-                    </div>
+                    <h2 class="h4 category mb-0 p-4 rounded-top text-light">Les origines de OuahJax</h2>
                 </div>
 
                 <div class="col-md-12">
                     <div class="card mb-4">
                         <div class="card-header">
                             <div class="media flex-wrap w-100 align-items-center"> <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/64/avatar-default-icon.png" class="d-block ui-w-40 rounded-circle" alt="">
-                                <div class="media-body ml-3"> <a href="javascript:void(0)" data-abc="true">David Gousserand</a>
+                                <div class="media-body ml-3"><a href="javascript:void(0)" data-abc="true">David Gousserand</a>
                                     <div class="text-muted small">Il y a 5 jours</div>
                                 </div>
                                 <div class="text-muted small ml-3">
@@ -79,7 +75,8 @@
 
                         </div>
                         <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
-                            <div class="px-4 pt-3"> <button type="button" class="btn btn-primary float-right"><i class="ion ion-md-create"></i>Répondre</button> </div>
+                            <div class="px-4 pt-3"> <button type="button" class="btn btn-sm btn-outline-danger">Répondre</button> </div>
+                            <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
                         </div>
                     </div>
                 </div>
@@ -102,6 +99,8 @@
                         </div>
                         <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3 ">
                             <div class="px-4 pt-3"> <button type="button" class="btn btn-sm btn-outline-danger">Répondre</button> </div>
+                            <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
+
                         </div>
                     </div>
                 </div>

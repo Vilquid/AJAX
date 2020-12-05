@@ -45,14 +45,14 @@
 
     <div class="container my-3">
         <nav class="breadcrumb ">
-            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a> &nbsp;/&nbsp; <a href="/AJAX/php/post.php">Nom du forum</a> </h6>
+            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a> &nbsp;/&nbsp; <a href="/AJAX/php/post.php" class="font-weight-bold">Nom du forum</a> </h6>
         </nav>
 
         <div class="row">
 
             <div class="container-fluid mt-100">
 
-                <a href="/AJAX/php/newpost.php"><button type="button" class="btn btn-shadow btn-wide btn-primary"> <span class="btn-icon-wrapper pr-2 opacity-7" > <i class="fa fa-plus fa-w-20"></i> </span> Nouveau sujet </button></a>
+                <a href="/AJAX/php/newpost.php"><button type="button" class="btn btn-shadow btn-wide btn-primary"> <span class="btn-icon-wrapper pr-2 opacity-7"> <i class="fa fa-plus fa-w-20"></i> </span> Nouveau sujet </button></a>
 
                 <div class="card mt-3 mb-3">
                     <div class="card-header pl-0 pr-0">

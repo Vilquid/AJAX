@@ -6,18 +6,18 @@
     <link rel="stylesheet" href="/AJAX/css/forum.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/AJAX/bootstrap/css/bootstrap.css" >
+    <link rel="stylesheet" href="/AJAX/bootstrap/css/bootstrap.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark" ">
         <a class=" navbar-brand" href="/AJAX/index.php">OuahJax</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExample03">
+        <div class="collapse navbar-collapse" >
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
 
@@ -45,7 +45,7 @@
 
     <div class="container my-3">
         <nav class="breadcrumb ">
-            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a></h6>
+            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php" class="font-weight-bold">Index</a></h6>
         </nav>
 
         <div class="row">
