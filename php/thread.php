@@ -101,7 +101,7 @@
                             <p>D'accord</p>
                         </div>
                         <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3 ">
-                            <div class="px-4 pt-3"> <button type="button" class="btn btn-primary light ">Répondre</button> </div>
+                            <div class="px-4 pt-3"> <button type="button" class="btn btn-sm btn-outline-danger">Répondre</button> </div>
                         </div>
                     </div>
                 </div>
