@@ -107,7 +107,7 @@ spl_autoload_register('chargerClasse');
                         <small id="ins-conf-password-help" class="form-text input-help-message"></small>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-outline-primary">S'inscrire</button>
+                        <button type="submit" id="ins-submit" class="btn btn-outline-primary">S'inscrire</button>
                     </div>
                 </form>
             </div>

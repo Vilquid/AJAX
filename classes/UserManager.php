@@ -32,15 +32,22 @@ class UserManager{
 		}
 	}
 	
-	public function add_user($pseudo, $email, $password)
+	public function addUser($pseudo, $email, $password)
 	{
 		$a = $this->emailExist($email);
 		$b = $this->pseudoExist($pseudo);
 
 		if ($a == false && $b == false)
 		{
-			$request = $this->_bdd->prepare("INSERT INTO `users` (`id`, `password`, `pseudo`, `mail`) VALUES (NULL, $password, $pseudo, $email)"); // Faut-il mettre un ";" à la fin de la requête
+			$request = $this->_bdd->prepare("INSERT INTO `users` (pseudo, email, `password`) VALUES (?, ?, ?);"); // Faut-il mettre un ";" à la fin de la requête
 			$request->execute([$pseudo, $email, $password]);
+			if($request->errorInfo()[0] == 00000){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
 		}
 	}
 }
