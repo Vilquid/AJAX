@@ -17,67 +17,33 @@ function InfoUserExist(field, value, callback) {
 }
 
 function changeEmailValidity(validity) {
-    email_field = document.querySelector("#ins-email");
-    email_help = document.querySelector("#ins-email-help");
-    email_icon = document.querySelector("#ins-email-icon");
     switch (validity) {
         case "free":
-            email_help.style.display = "none";
-            email_icon.style.display = "block";
-            email_icon.innerHTML = '<i class="fas fa-check"></i>';
-            email_icon.setAttribute("class", "input-group-text text-white bg-success border-success");
-            email_field.setAttribute("class", "form-control border-success");
+            applyStyle("email","valid");
             formValidity.email = true;
             break;
         case "invalid":
-            email_help.style.display = "block";
-            email_help.innerHTML = "Cet email n'est pas valide";
-            email_icon.style.display = "block";
-            email_icon.innerHTML = '<i class="fas fa-times"></i>';
-            email_icon.setAttribute("class", "input-group-text text-white bg-danger border-danger");
-            email_field.setAttribute("class", "form-control border-danger");
+            applyStyle("pseudo","invalid","Cet email n'est pas valide");
             formValidity.email = false;
             break;
         case "exist":
-            email_help.style.display = "block";
-            email_help.innerHTML = "Cet email est déjà pris";
-            email_icon.style.display = "block";
-            email_icon.innerHTML = '<i class="fas fa-times"></i>';
-            email_icon.setAttribute("class", "input-group-text text-white bg-danger border-danger");
-            email_field.setAttribute("class", "form-control border-danger");
+            applyStyle("pseudo","invalid","Cet email est déjà pris");
             formValidity.email = false;
     }
 }
 
 function changePseudoValidity(validity) {
-    pseudo_field = document.querySelector("#ins-pseudo");
-    pseudo_help = document.querySelector("#ins-pseudo-help");
-    pseudo_icon = document.querySelector("#ins-pseudo-icon");
     switch (validity) {
         case "free":
-            pseudo_help.style.display = "none";
-            pseudo_icon.style.display = "block";
-            pseudo_icon.innerHTML = '<i class="fas fa-check"></i>';
-            pseudo_icon.setAttribute("class", "input-group-text text-white bg-success border-success");
-            pseudo_field.setAttribute("class", "form-control border-success");
+            applyStyle("pseudo","valid");
             formValidity.pseudo = true;
             break;
         case "invalid":
-            pseudo_help.style.display = "block";
-            pseudo_help.innerHTML = "Ce pseudo n'est pas valide";
-            pseudo_icon.style.display = "block";
-            pseudo_icon.innerHTML = '<i class="fas fa-times"></i>';
-            pseudo_icon.setAttribute("class", "input-group-text text-white bg-danger border-danger");
-            pseudo_field.setAttribute("class", "form-control border-danger");
+            applyStyle("pseudo","invalid","Ce pseudo n'est pas valide");
             formValidity.pseudo = false;
             break;
         case "exist":
-            pseudo_help.style.display = "block";
-            pseudo_help.innerHTML = "Ce pseudo est déjà pris";
-            pseudo_icon.style.display = "block";
-            pseudo_icon.innerHTML = '<i class="fas fa-times"></i>';
-            pseudo_icon.setAttribute("class", "input-group-text text-white bg-danger border-danger");
-            pseudo_field.setAttribute("class", "form-control border-danger");
+            applyStyle("pseudo","invalid","Ce pseudo est déjà pris");
             formValidity.pseudo = false;
     }
 }
@@ -103,24 +69,13 @@ function checkPseudoValidity() {
 function checkConfPasswordValidity() {
     password_field = document.querySelector("#ins-password");
     conf_password_field = document.querySelector("#ins-conf-password");
-    conf_password_icon = document.querySelector("#ins-conf-password-icon");
-    conf_password_help = document.querySelector("#ins-conf-password-help");
     if (password_field.value === conf_password_field.value) {
         //si les mots de passe sont identique
-        conf_password_help.style.display = "none";
-        conf_password_icon.style.display = "block";
-        conf_password_icon.innerHTML = '<i class="fas fa-check"></i>';
-        conf_password_icon.setAttribute("class", "input-group-text text-white bg-success border-success");
-        conf_password_field.setAttribute("class", "form-control border-success");
+        applyStyle("conf-password","valid");
         formValidity.password = true;
     } else {
         //si les mots de passe sont différent
-        conf_password_help.style.display = "block";
-        conf_password_help.innerHTML = "Les mots de passe sont différent";
-        conf_password_icon.style.display = "block";
-        conf_password_icon.innerHTML = '<i class="fas fa-times"></i>';
-        conf_password_icon.setAttribute("class", "input-group-text text-white bg-danger border-danger");
-        conf_password_field.setAttribute("class", "form-control border-danger");
+        applyStyle("conf-password","invalid","Les mots de passe sont différent");
         formValidity.password = false;
     }
 }
@@ -152,6 +107,9 @@ function recieveInscription(data) {
         document.querySelector("#ins-pseudo").value = "";
         document.querySelector("#ins-password").value = "";
         document.querySelector("#ins-conf-password").value = "";
+        applyStyle("email","neutral");
+        applyStyle("pseudo","neutral");
+        applyStyle("conf-password","neutral");
     } else if (data === "failed") {
         console.log("l'email ou le pseudo est déjà prit");
     } else {
@@ -174,18 +132,20 @@ function applyStyle(name_field, validity, help_message = "") {
             break;
         case "invalid":
             help.style.display = "block";
-            conf_password_help.innerHTML = help_message;
+            help.innerHTML = help_message;
             icon.style.display = "block";
             icon.innerHTML = '<i class="fas fa-times"></i>';
             icon.setAttribute("class", "input-group-text text-white bg-danger border-danger");
             field.setAttribute("class", "form-control border-danger");
+            break;
         case "neutral":
             help.style.display = "none";
-            conf_password_help.innerHTML = help_message;
+            help.innerHTML = help_message;
             icon.style.display = "none";
             icon.innerHTML = '';
             icon.setAttribute("class", "input-group-text");
             field.setAttribute("class", "form-control");
+            break;
     }
 }
 
