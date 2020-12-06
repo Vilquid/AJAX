@@ -32,3 +32,5 @@ class UserManager{
         }
     }
 }
+
+// modifier user ma pour (ajoueter une fonc addUser qui permet d'ajouter un utilisateur à la bdd penser que l'on peut ajouter un password)
