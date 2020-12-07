@@ -36,7 +36,21 @@
                         <span><i class="fas fa-sign-in-alt"></i></span> Se connecter / Inscription</a>
                 </li>
             </ul>
-            <!--
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/64/avatar-default-icon.png" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-item"><i class="fas fa-user"></i> Profil</div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item " href="#"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--
             <input type="checkbox" id="switch" name="theme" />
             <label id="darkmode" for="switch"><span class="fas fa-sun"> / </span> <span class="fas fa-moon"></span></label>
             -->
