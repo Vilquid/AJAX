@@ -31,6 +31,21 @@ class UserManager{
 			return null;
 		}
 	}
+
+	public function getPhotoByMessageID($id_message)
+	{
+		$request = $this->_bdd->prepare("SELECT photo FROM users, messages WHERE users.id = messages.id_user AND messages.id = ?;");
+		$request->execute([$id_message]);
+		$data = $request->fetch(PDO::FETCH_ASSOC);
+		if($data)
+		{
+			return $data["photo"];
+		}
+		else
+		{
+			return null;
+		}
+	}
 	
 	public function addUser($pseudo, $email, $password)
 	{
@@ -39,7 +54,7 @@ class UserManager{
 
 		if ($a == false && $b == false)
 		{
-			$request = $this->_bdd->prepare("INSERT INTO `users` (pseudo, email, `password`) VALUES (?, ?, ?);"); // Faut-il mettre un ";" à la fin de la requête
+			$request = $this->_bdd->prepare("INSERT INTO `users` (pseudo, email, `password`) VALUES (?, ?, ?);");
 			$request->execute([$pseudo, $email, $password]);
 			if($request->errorInfo()[0] == 00000){
 				return true;

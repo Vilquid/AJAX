@@ -5,6 +5,7 @@
 		private $_pseudo = "";
 		private $_id = 0;
 		private $_password = "";
+		private $_photo;
 
 		public function hydrate(array $data)
 		{
@@ -41,6 +42,11 @@
 			$this->_email = $data["email"];
 		}
 
+		public function set_photo($data)
+		{
+			$this->_photo = $data["photo"];
+		}
+
 		public function set_id($data)
 		{
 			$this->_id = $data["id"];
@@ -64,6 +70,11 @@
 		public function get_id()
 		{
 			return $this->_id;
+		}
+
+		public function get_photo()
+		{
+			return $this->_photo;
 		}
 	}
 ?>
