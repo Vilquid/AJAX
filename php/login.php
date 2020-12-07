@@ -1,4 +1,5 @@
 <?php
+session_start();
 function chargerClasse($classe)
 {
     require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/$classe.php";
@@ -61,7 +62,7 @@ spl_autoload_register('chargerClasse');
                         <input class="form-control" type="password" id="con-password" name="con-password" required="" />
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-outline-primary">Se connecter</button>
+                        <button type="submit" id="con-submit" class="btn btn-outline-primary">Se connecter</button>
                     </div>
                 </form>
             </div>

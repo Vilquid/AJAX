@@ -1,3 +1,20 @@
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/UserManager.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/User.php";
+session_start();
+if(isset($_SESSION['user_id'])){
+    if($_SESSION['user_id'] != 0){
+        $manager = new UserManager();
+        $connected_user = $manager->getPseudoById($_SESSION['user_id']);
+    }else{
+        $connected_user = null;
+    }
+}else{
+    $connected_user = null;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -29,14 +46,18 @@
                     <a class="nav-link" href="/AJAX/php/sujets.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
                 </li>
             </ul>
-
+            <?php
+            if(!$connected_user){
+            ?>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item ">
                     <a class="nav-link" href="/AJAX/php/login.php" tabindex="-1" aria-disabled="true">
                         <span><i class="fas fa-sign-in-alt"></i></span> Se connecter / Inscription</a>
                 </li>
             </ul>
-
+            <?php
+            }else{
+            ?>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -45,15 +66,18 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <div class="dropdown-item"><i class="fas fa-user"></i> Profil</div>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item " href="#"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        <a class="dropdown-item " href="/AJAX/php/deconnexion.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     </div>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Pseudo</a>
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"><?php echo $connected_user; ?></a>
                 </li>
             </ul>
+            <?php
+            }
+            ?>
         </div>
         <!--
             <input type="checkbox" id="switch" name="theme" />

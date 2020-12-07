@@ -82,7 +82,7 @@ function checkConfPasswordValidity() {
 
 //send form
 function sendForm() {
-    if (formValidity.email && formValidity.password && formValidity.password) {
+    if (formValidity.email && formValidity.pseudo && formValidity.password) {
         sendInscription(document.querySelector("#ins-pseudo").value, document.querySelector("#ins-email").value, document.querySelector("#ins-password").value, recieveInscription);
         console.log("form sent");
     }
@@ -153,13 +153,37 @@ function applyStyle(name_field, validity, help_message = "") {
 }
 
 // ######################## connexion #################################################################
+function sendConnexion(email, password, callback) {
+    let xhr = getXMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            callback(xhr.responseText);
+        }
+    };
+    xhr.open("POST", "/AJAX/ajax/connexion.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("email=" + email + "&password=" + password);
+}
 
+function checkConnexion(){
+    email = document.querySelector("#con-email").value;
+    password = document.querySelector("#con-password").value;
+    sendConnexion(email,password,connexion);
+}
+
+function connexion(state){
+    console.log(state);
+    if(state == 'success'){
+        document.location.href = '/AJAX';
+    }
+}
 
 function bindEvent() {
     document.querySelector("#ins-email").addEventListener("input", checkEmailValidity);
     document.querySelector("#ins-pseudo").addEventListener("input", checkPseudoValidity);
     document.querySelector("#ins-conf-password").addEventListener("input", checkConfPasswordValidity);
     document.querySelector("#ins-submit").addEventListener("click", sendForm);
+    document.querySelector("#con-submit").addEventListener("click", checkConnexion);
 }
 
 window.addEventListener("load", bindEvent);
