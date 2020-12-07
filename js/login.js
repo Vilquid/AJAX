@@ -23,11 +23,11 @@ function changeEmailValidity(validity) {
             formValidity.email = true;
             break;
         case "invalid":
-            applyStyle("pseudo","invalid","Cet email n'est pas valide");
+            applyStyle("email","invalid","Cet email n'est pas valide");
             formValidity.email = false;
             break;
         case "exist":
-            applyStyle("pseudo","invalid","Cet email est déjà pris");
+            applyStyle("email","invalid","Cet email est déjà pris");
             formValidity.email = false;
     }
 }
@@ -110,6 +110,9 @@ function recieveInscription(data) {
         applyStyle("email","neutral");
         applyStyle("pseudo","neutral");
         applyStyle("conf-password","neutral");
+        formValidity.password = false;
+        formValidity.email = false;
+        formValidity.pseudo = false;
     } else if (data === "failed") {
         console.log("l'email ou le pseudo est déjà prit");
     } else {
@@ -148,6 +151,9 @@ function applyStyle(name_field, validity, help_message = "") {
             break;
     }
 }
+
+// ######################## connexion #################################################################
+
 
 function bindEvent() {
     document.querySelector("#ins-email").addEventListener("input", checkEmailValidity);
