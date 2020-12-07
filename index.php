@@ -43,37 +43,87 @@
         </div>
     </nav>
 
-    <h1 id='title1'>Bienvenue sur OuahJax !</h1>
-
-
-
-    <div class="container" style="margin-top: 2%;">
+    <h1 class="d-flex justify-content-center">Bienvenue sur OuahJax !</h1>
+    <div class="container my-3">
         <div class="row">
-            <div class="col-12 col-md-8">
-                <div class="card w-1">
-                    <div class="card-body">
-                        <h3 class="card-title"> <span class="fas fa-sitemap"></span> A propos du site</h3>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed vestibulum diam. Nullam a vulputate massa. Mauris tincidunt tortor et velit pellentesque gravida. Ut tempus sollicitudin nunc eu tempus. Aenean sagittis ante viverra ante malesuada, vel pharetra diam eleifend. Aliquam porta ante eget gravida tristique. Praesent eleifend enim a lorem.</p>
+            <div class="col-12 col-xl-9">
+                <div class="container" style="margin-top: 2%;">
+                    <div class="col-12 col-md-12">
+                        <div class="card w-1">
+                            <div class="card-body">
+                                <h3 class="card-title"> <span class="fas fa-sitemap"></span> A propos du site</h3>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed vestibulum diam. Nullam a vulputate massa. Mauris tincidunt tortor et velit pellentesque gravida. Ut tempus sollicitudin nunc eu tempus. Aenean sagittis ante viverra ante malesuada, vel pharetra diam eleifend. Aliquam porta ante eget gravida tristique. Praesent eleifend enim a lorem.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="container" style="margin-top: 2%;">
+                    <div class="col-12 col-md-12">
+                        <div class="card w-1">
+                            <div class="card-body">
+                                <h3 class="card-title"> <span class="fas fa-sitemap"></span> Selection de sujets</h3>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed vestibulum diam. Nullam a vulputate massa. Mauris tincidunt tortor et velit pellentesque gravida. Ut tempus sollicitudin nunc eu tempus. Aenean sagittis ante viverra ante malesuada, vel pharetra diam eleifend. Aliquam porta ante eget gravida tristique. Praesent eleifend enim a lorem.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-    </div>
+            <div class="col-12 col-xl-3">
+                <aside>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-xl-12">
+                            <div class="card mb-3 mb-sm-0 mb-xl-3">
+                                <div class="card-body">
+                                    <h2 class="h4 card-title">Membres en ligne</h2>
+                                    <ul class="list-noStyle mb-0">
+                                        <li><a href="#">Nom du membre</a></li>
+                                        <li><a href="#">Nom du membre</a></li>
+                                        <li><a href="#">Nom du membre</a></li>
+                                        <li><a href="#">Nom du membre</a></li>
+                                        <li><a href="#">Nom du membre</a></li>
 
-    <div class="container" style="margin-top: 2%;">
-        <div class="row">
-            <div class="col-12 col-md-8">
-                <div class="card w-1">
-                    <div class="card-body">
-                        <h3 class="card-title"> <span class="fas fa-sitemap"></span> Selection de sujets</h3>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed vestibulum diam. Nullam a vulputate massa. Mauris tincidunt tortor et velit pellentesque gravida. Ut tempus sollicitudin nunc eu tempus. Aenean sagittis ante viverra ante malesuada, vel pharetra diam eleifend. Aliquam porta ante eget gravida tristique. Praesent eleifend enim a lorem.</p>
-
+                                    </ul>
+                                </div>
+                                <div class="card-footer">
+                                    <dl class="row mb-0">
+                                        <dt class="col-8"> Total :</dt>
+                                        <dd class="col-4 mb-0">?</dd>
+                                    </dl>
+                                    <dl class="row mb-0">
+                                        <dt class="col-8"> Membres :</dt>
+                                        <dd class="col-4 mb-0">?</dd>
+                                    </dl>
+                                    <dl class="row mb-0">
+                                        <dt class="col-8"> Invitées :</dt>
+                                        <dd class="col-4 mb-0">?</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="h4 card-title">Statistiques</h2>
+                                    <dl class="row mb-0">
+                                        <dt class="col-8"> Forums</dt>
+                                        <dd class="col-4 mb-0">?</dd>
+                                    </dl>
+                                    <dl class="row mb-0">
+                                        <dt class="col-8"> Sujets</dt>
+                                        <dd class="col-4 mb-0">?</dd>
+                                    </dl>
+                                    <dl class="row mb-0">
+                                        <dt class="col-8"> Membres</dt>
+                                        <dd class="col-4 mb-0">?</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </aside>
             </div>
-
         </div>
     </div>
 
