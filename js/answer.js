@@ -5,8 +5,7 @@ function showEditBox() {
     if (container) {
         var area = document.createElement("textarea");
         area.id = "MyEditBox";
-        area.style.width = "1050px";
-        area.style.height = "100px";
+        area.setAttribute("class", "form-control mb-5");
         container.appendChild(area);
     } else {
         alert("You have no EditBoxContainer!");

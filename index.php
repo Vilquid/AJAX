@@ -49,6 +49,11 @@
                     </div>
                 </li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Pseudo</a>
+                </li>
+            </ul>
         </div>
         <!--
             <input type="checkbox" id="switch" name="theme" />

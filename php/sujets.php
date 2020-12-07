@@ -17,7 +17,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" >
+        <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
 
@@ -49,9 +49,9 @@
         </nav>
 
         <div class="row">
-            <div class="col-12 col-xl-9">
+            <div class="col-12">
                 <h2 class="h4 category mb-0 p-4 rounded-top text-light">Categorie</h2>
-                <table class="table table-striped table-bordered table-responsive">
+                <table class="table table-striped table-bordered ">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col" class="forum-col">Forum</th>
@@ -127,75 +127,12 @@
                         </tr>
                     </tbody>
                 </table>
-
-
-
             </div>
 
-
-
-
-            <div class="col-12  col-xl-3">
-                <aside>
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-xl-12">
-                            <div class="card mb-3 mb-sm-0 mb-xl-3">
-                                <div class="card-body">
-                                    <h2 class="h4 card-title">Membres en ligne</h2>
-                                    <ul class="list-noStyle mb-0">
-                                        <li><a href="#">Nom du membre</a></li>
-                                        <li><a href="#">Nom du membre</a></li>
-                                        <li><a href="#">Nom du membre</a></li>
-                                        <li><a href="#">Nom du membre</a></li>
-                                        <li><a href="#">Nom du membre</a></li>
-
-                                    </ul>
-                                </div>
-                                <div class="card-footer">
-                                    <dl class="row mb-0">
-                                        <dt class="col-8"> Total :</dt>
-                                        <dd class="col-4 mb-0">?</dd>
-                                    </dl>
-                                    <dl class="row mb-0">
-                                        <dt class="col-8"> Membres :</dt>
-                                        <dd class="col-4 mb-0">?</dd>
-                                    </dl>
-                                    <dl class="row mb-0">
-                                        <dt class="col-8"> Invitées :</dt>
-                                        <dd class="col-4 mb-0">?</dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-xl-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h2 class="h4 card-title">Statistiques</h2>
-                                    <dl class="row mb-0">
-                                        <dt class="col-8"> Forums</dt>
-                                        <dd class="col-4 mb-0">?</dd>
-                                    </dl>
-                                    <dl class="row mb-0">
-                                        <dt class="col-8"> Sujets</dt>
-                                        <dd class="col-4 mb-0">?</dd>
-                                    </dl>
-                                    <dl class="row mb-0">
-                                        <dt class="col-8"> Membres</dt>
-                                        <dd class="col-4 mb-0">?</dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
+            <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
