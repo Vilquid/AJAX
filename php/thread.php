@@ -1,3 +1,23 @@
+<?php
+session_start();
+function chargerClasse($classe)
+{
+    require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/$classe.php";
+}
+spl_autoload_register('chargerClasse');
+if(isset($_SESSION['user_id'])){
+    if($_SESSION['user_id'] != 0){
+        $manager = new UserManager();
+        $connected_user = $manager->getPseudoById($_SESSION['user_id']);
+    }else{
+        $connected_user = null;
+    }
+}else{
+    $connected_user = null;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -32,12 +52,38 @@
                 </li>
             </ul>
 
+            <?php
+            if(!$connected_user){
+            ?>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item ">
                     <a class="nav-link" href="/AJAX/php/login.php" tabindex="-1" aria-disabled="true">
                         <span><i class="fas fa-sign-in-alt"></i></span> Se connecter / Inscription</a>
                 </li>
             </ul>
+            <?php
+            }else{
+            ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/64/avatar-default-icon.png" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-item"><i class="fas fa-user"></i> Profil</div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item " href="/AJAX/php/deconnexion.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"><?php echo $connected_user; ?></a>
+                </li>
+            </ul>
+            <?php
+            }
+            ?>
             <!--
             <input type="checkbox" id="switch" name="theme" />
             <label id="darkmode" for="switch"><span class="fas fa-sun"> / </span> <span class="fas fa-moon"></span></label>

@@ -1,7 +1,10 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/UserManager.php";
-require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/User.php";
 session_start();
+function chargerClasse($classe)
+{
+    require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/$classe.php";
+}
+spl_autoload_register('chargerClasse');
 if(isset($_SESSION['user_id'])){
     if($_SESSION['user_id'] != 0){
         $manager = new UserManager();
@@ -27,7 +30,7 @@ if(isset($_SESSION['user_id'])){
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class=" navbar-brand" href="/AJAX/index.php">OuahJax</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
