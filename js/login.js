@@ -103,6 +103,7 @@ function sendInscription(pseudo, email, password, callback) {
 function recieveInscription(data) {
     if (data === "success") {
         console.log("inscription valide, vous pouvez vous connecter");
+        sendConnexion(document.querySelector("#ins-email").value,document.querySelector("#ins-password").value,connexion);
         document.querySelector("#ins-email").value = "";
         document.querySelector("#ins-pseudo").value = "";
         document.querySelector("#ins-password").value = "";
