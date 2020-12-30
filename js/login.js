@@ -39,7 +39,7 @@ function changePseudoValidity(validity) {
             formValidity.pseudo = true;
             break;
         case "invalid":
-            applyStyle("pseudo","invalid","Ce pseudo n'est pas valide");
+            applyStyle("pseudo","invalid","Ce pseudo n'est pas valide (au minimum 4 caractères alphanumériques et au plus deux '_'");
             formValidity.pseudo = false;
             break;
         case "exist":
@@ -60,22 +60,41 @@ function checkEmailValidity() {
 function checkPseudoValidity() {
     pseudo_field = document.querySelector("#ins-pseudo");
     if (pseudo_field.checkValidity()) {
-        InfoUserExist("pseudo", pseudo_field.value, changePseudoValidity);
+        if(!(/(?:_.*){3,}/).test(pseudo_field.value)){
+            InfoUserExist("pseudo", pseudo_field.value, changePseudoValidity);
+        } else {
+            changePseudoValidity("invalid");
+        }
     } else {
         changePseudoValidity("invalid");
+    }
+}
+
+function checkPasswordValidity() {
+    password_field = document.querySelector("#ins-password");
+    if(password_field.checkValidity()){
+        applyStyle("password","valid");
+        checkConfPasswordValidity();
+    }else{
+        applyStyle("password","invalid","Le mot de passe doit faire au moins 6 caractères");
     }
 }
 
 function checkConfPasswordValidity() {
     password_field = document.querySelector("#ins-password");
     conf_password_field = document.querySelector("#ins-conf-password");
-    if (password_field.value === conf_password_field.value) {
-        //si les mots de passe sont identique
-        applyStyle("conf-password","valid");
-        formValidity.password = true;
-    } else {
-        //si les mots de passe sont différent
-        applyStyle("conf-password","invalid","Les mots de passe sont différent");
+    if(password_field.checkValidity()){
+        if (password_field.value === conf_password_field.value) {
+            //si les mots de passe sont identique
+            applyStyle("conf-password","valid");
+            formValidity.password = true;
+        } else {
+            //si les mots de passe sont différent
+            applyStyle("conf-password","invalid","Les mots de passe sont différent");
+            formValidity.password = false;
+        }
+    }else{
+        applyStyle("conf-password","invalid","Le mot de passe est invalid");
         formValidity.password = false;
     }
 }
@@ -182,6 +201,7 @@ function connexion(state){
 function bindEvent() {
     document.querySelector("#ins-email").addEventListener("input", checkEmailValidity);
     document.querySelector("#ins-pseudo").addEventListener("input", checkPseudoValidity);
+    document.querySelector("#ins-password").addEventListener("input", checkPasswordValidity);
     document.querySelector("#ins-conf-password").addEventListener("input", checkConfPasswordValidity);
     document.querySelector("#ins-submit").addEventListener("click", sendForm);
     document.querySelector("#con-submit").addEventListener("click", checkConnexion);

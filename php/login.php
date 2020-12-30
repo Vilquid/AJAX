@@ -77,7 +77,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == 0) {
                         <div class="form-group">
                             <label for="ins-pseudo">Pseudo</label>
                             <div class="input-group">
-                                <input class="form-control" type="text" id="ins-pseudo" name="ins-pseudo" required="" />
+                                <input class="form-control" type="text" id="ins-pseudo" name="ins-pseudo" required="" pattern="[0-9a-zA-Z_]{4,20}" />
                                 <div class="input-group-append">
                                     <div id="ins-pseudo-icon" class="input-group-text validity-icon"></div>
                                 </div>
@@ -87,7 +87,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == 0) {
                         <div class="form-group">
                             <label for="ins-email">Email</label>
                             <div class="input-group">
-                                <input class="form-control" type="email" id="ins-email" name="ins-email" required="" />
+                                <input class="form-control" type="email" id="ins-email" name="ins-email" required="" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
                                 <div class="input-group-append">
                                     <div id="ins-email-icon" class="input-group-text validity-icon"></div>
                                 </div>
@@ -96,12 +96,18 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == 0) {
                         </div>
                         <div class="form-group">
                             <label for="ins-password">Mot de passe</label>
-                            <input class="form-control" type="password" id="ins-password" name="ins-password" required="" />
+                            <div class="input-group">
+                                <input class="form-control" type="password" id="ins-password" name="ins-password" required="" minlength="6" />
+                                <div class="input-group-append">
+                                    <div id="ins-password-icon" class="input-group-text validity-icon"></div>
+                                </div>
+                            </div>
+                            <small id="ins-password-help" class="form-text input-help-message"></small>
                         </div>
                         <div class="form-group">
                             <label for="ins-conf-password">Confirmer mot de passe</label>
                             <div class="input-group">
-                                <input class="form-control" type="password" id="ins-conf-password" name="ins-conf-password" required="" />
+                                <input class="form-control" type="password" id="ins-conf-password" name="ins-conf-password" required="" minlength="6" />
                                 <div class="input-group-append">
                                     <div id="ins-conf-password-icon" class="input-group-text validity-icon"></div>
                                 </div>
