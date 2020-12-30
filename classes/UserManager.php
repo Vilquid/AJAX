@@ -37,6 +37,17 @@ class UserManager
 		}
 	}
 
+	public function getUserClientById($id) {
+		$request = $this->_bdd->prepare("SELECT id, pseudo, photo, date_creation FROM users WHERE id = ?");
+		$request->execute([$id]);
+		$data = $request->fetch(PDO::FETCH_ASSOC);
+		if ($data) {
+			return new UserClient($data);
+		} else {
+			return null;
+		}
+	}
+
 	public function getPseudoById($id) {
 		$request = $this->_bdd->prepare("SELECT pseudo FROM users WHERE id = ?");
 		$request->execute([$id]);
