@@ -3,6 +3,9 @@ class UserManager
 {
 
 	private $_bdd = null;
+	private $_password_crypt_option = [
+		'cost' => 12
+	];
 
 	public function __construct()
 	{
@@ -76,14 +79,15 @@ class UserManager
 	
 	public function addUser($pseudo, $email, $password)
 	{
+		$hash_password = password_hash($password,PASSWORD_BCRYPT,$this->_password_crypt_option);
 		$a = $this->emailExist($email);
 		$b = $this->pseudoExist($pseudo);
 
 		if ($a == false && $b == false)
 		{
 			$request = $this->_bdd->prepare("INSERT INTO `users` (pseudo, email, `password`) VALUES (?, ?, ?);");
-			$request->execute([$pseudo, $email, $password]);
-			if ($request->errorInfo()[0] == 00000) {
+			$request->execute([$pseudo, $email, $hash_password]);
+			if ($request->errorInfo()[0] == 0) {
 				return true;
 			} else {
 				return false;
@@ -95,11 +99,13 @@ class UserManager
 
 	public function connexion($email, $password)
 	{
-		$request = $this->_bdd->prepare("SELECT id FROM users WHERE email= ? AND `password`= ?;");
-		$request->execute([$email, $password]);
+		$request = $this->_bdd->prepare("SELECT id, password FROM users WHERE email= ?;");
+		$request->execute([$email]);
 		$data = $request->fetch(PDO::FETCH_ASSOC);
 		if($data){
-			return $data['id'];
+			if(password_verify($password, $data['password'])){
+				return $data['id'];
+			}
 		}else{
 			return 0;
 		}
