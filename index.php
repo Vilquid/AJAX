@@ -81,7 +81,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <div class="dropdown-item"><i class="fas fa-user"></i> Profil</div>
+                            <a class="dropdown-item" href="/AJAX/php/account.php" ><i class="fas fa-user"></i> Profil</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item " href="/AJAX/php/deconnexion.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                         </div>
