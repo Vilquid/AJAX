@@ -5,15 +5,20 @@ function chargerClasse($classe)
     require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/$classe.php";
 }
 spl_autoload_register('chargerClasse');
+$Usermanager = new UserManager();
+$ForumManager = new ForumManager();
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['user_id'] != 0) {
-        $manager = new UserManager();
-        $connected_user = $manager->getUserClientById($_SESSION['user_id']);
+        $connected_user = $Usermanager->getUserClientById($_SESSION['user_id']);
     } else {
         $connected_user = null;
     }
 } else {
     $connected_user = null;
+}
+
+function connected(){
+    return (!$GLOBALS['connected_user'])?true:false;
 }
 
 ?>
@@ -50,7 +55,7 @@ if (isset($_SESSION['user_id'])) {
                 </li>
             </ul>
             <?php
-            if (!$connected_user) {
+            if (connected()) {
             ?>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item ">
@@ -164,15 +169,15 @@ if (isset($_SESSION['user_id'])) {
                                     <h2 class="h4 card-title">Statistiques</h2>
                                     <dl class="row mb-0">
                                         <dt class="col-8"> Forums</dt>
-                                        <dd class="col-4 mb-0">?</dd>
+                                        <dd class="col-4 mb-0"><?php echo $ForumManager->getNombreForum();?></dd>
                                     </dl>
                                     <dl class="row mb-0">
                                         <dt class="col-8"> Sujets</dt>
-                                        <dd class="col-4 mb-0">?</dd>
+                                        <dd class="col-4 mb-0"><?php echo $ForumManager->getNombreSujet();?></dd>
                                     </dl>
                                     <dl class="row mb-0">
                                         <dt class="col-8"> Membres</dt>
-                                        <dd class="col-4 mb-0">?</dd>
+                                        <dd class="col-4 mb-0"><?php echo $Usermanager->getNombreMembre();?></dd>
                                     </dl>
                                 </div>
                             </div>

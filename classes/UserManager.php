@@ -28,17 +28,6 @@ class UserManager
 		return isset($result['exist']) ? true : false;
 	}
 
-	public function getUserById($id)
-	{
-		$request = $this->_bdd->prepare("SELECT id, pseudo, email FROM users WHERE id = ?");
-		$request->execute([$id]);
-		$data = $request->fetch(PDO::FETCH_ASSOC);
-		if ($data) {
-			return new User($data);
-		} else {
-			return null;
-		}
-	}
 
 	public function getUserClientById($id) {
 		$request = $this->_bdd->prepare("SELECT id, pseudo, photo, date_creation FROM users WHERE id = ?");
@@ -109,5 +98,12 @@ class UserManager
 		}else{
 			return 0;
 		}
+	}
+
+	public function getNombreMembre(){
+		$request = $this->_bdd->prepare("SELECT count(id) as nb FROM users;");
+		$request->execute();
+		$data = $request->fetch(PDO::FETCH_ASSOC);
+		return $data['nb'];
 	}
 }
