@@ -152,7 +152,19 @@ if (isset($_SESSION['user_id'])) {
                 </div>
 
                 <div class="col-md-12">
-                    <a href="javascript: void(0);" onclick="showEditBox()"><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
+
+                    <?php
+                    if (!$connected_user) {
+                    ?>
+                        <a href="/AJAX/php/login.php" onclick="#"><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
+
+                    <?php
+                    } else {
+                    ?>
+                        <a href="javascript: void(0);" onclick="showEditBox()"><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
 
