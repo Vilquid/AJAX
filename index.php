@@ -51,14 +51,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
                         <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <div class="row">
                                 <div class="col-4">
-                                    <?php
-                                    if($connected_user->getPhoto()){
-                                        echo '<img src="data:image/png;base64,'.base64_encode($connected_user->getPhoto()).'" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">';
-                                    }else{
-                                        echo '<img src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/64/avatar-default-icon.png" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">';
-                                    }
-                                    ?>
-                                    
+                                    <img src="<?php echo $connected_user->getRealPhoto()?>" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">
                                 </div>
                                 <div class="col">
                                     <?php echo $connected_user->getPseudo(); ?>
