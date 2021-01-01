@@ -130,6 +130,7 @@ function recieveInscription(data) {
         applyStyle("email","neutral");
         applyStyle("pseudo","neutral");
         applyStyle("conf-password","neutral");
+        applyStyle("password","neutral");
         formValidity.password = false;
         formValidity.email = false;
         formValidity.pseudo = false;
@@ -194,7 +195,10 @@ function checkConnexion(){
 function connexion(state){
     console.log(state);
     if(state == 'success'){
+        document.querySelector("#connexionWarning").style.display = "none";
         document.location.href = '/AJAX';
+    }else{
+        document.querySelector("#connexionWarning").style.display = "block";
     }
 }
 

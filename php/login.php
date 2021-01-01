@@ -53,6 +53,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == 0) {
                 <div class="col-sm-0 col-md-2 col-lg-1"></div>
                 <div class="col-sm-12 col-md-8 col-lg-4 text-dark">
                     <h3 class="display-4 text-center">Connexion</h3>
+                    <div class="text-center" id="connexionWarning">
+                        L'email ou le mot de passe est invalide
+                    </div>
                     <form onSubmit="return false;">
                         <div class="form-group">
                             <label for="con-email">Email</label>

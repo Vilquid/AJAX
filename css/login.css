@@ -6,3 +6,11 @@ html, body{
 .input-help-message, .validity-icon{
     display: none;
 }
+
+#connexionWarning{
+    display: none;
+    color :#d70000;
+    background-color: #ff8a8a;
+    border: 1px solid #d70000;
+    border-radius: 10px;
+}
