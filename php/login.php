@@ -37,7 +37,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == 0) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/AJAX/php/sujets.php"><span><i class="fab fa-wpforms"></i></span>
+                        <a class="nav-link" href="/AJAX/php/forums.php"><span><i class="fab fa-wpforms"></i></span>
                             Forum</a>
                     </li>
 

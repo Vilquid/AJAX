@@ -46,7 +46,7 @@ if (isset($_SESSION['user_id'])) {
 
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/AJAX/php/sujets.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
+                    <a class="nav-link" href="/AJAX/php/forums.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
                 </li>
             </ul>
 

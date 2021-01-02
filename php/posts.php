@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id'])) {
 
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/AJAX/php/sujets.php"><span><i class="fab fa-wpforms"></i></span>
+                    <a class="nav-link" href="/AJAX/php/forums.php"><span><i class="fab fa-wpforms"></i></span>
                         Forum</a>
                 </li>
             </ul>
@@ -93,7 +93,7 @@ if (isset($_SESSION['user_id'])) {
 
     <div class="container my-3">
         <nav class="breadcrumb ">
-            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a> &nbsp;/&nbsp; <a href="/AJAX/php/post.php">Nom du Forum</a> &nbsp;/&nbsp; <a href="/AJAX/php/thread.php" class="font-weight-bold">Les origines de OuahJax</a> </h6>
+            <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Index</a> &nbsp;/&nbsp; <a href="/AJAX/php/sujets.php">Nom du Forum</a> &nbsp;/&nbsp; <a href="/AJAX/php/posts.php" class="font-weight-bold">Les origines de OuahJax</a> </h6>
         </nav>
 
         <div class="row">
@@ -156,7 +156,7 @@ if (isset($_SESSION['user_id'])) {
                     <?php
                     if (!$connected_user) {
                     ?>
-                        <a href="/AJAX/php/login.php" onclick="#"><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
+                        <a href="/AJAX/php/login.php" onclick=""><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
 
                     <?php
                     } else {
