@@ -54,10 +54,10 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <div class="row">
-                                <div class="col-2">
+                                <div class="col-1">
                                     <img src="<?php echo $connected_user->getRealPhoto() ?>" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">
                                 </div>
-                                <div class="col">
+                                <div class="col text-center">
                                     <?php echo $connected_user->getPseudo(); ?>
                                 </div>
                             </div>
