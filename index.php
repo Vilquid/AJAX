@@ -1,5 +1,7 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
 
 ?>
 
@@ -10,6 +12,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/AJAX/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/AJAX/css/index.css" rel="stylesheet">
 
     <title>Forum Projet AJAX</title>
 </head>
@@ -34,6 +37,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
                     <a class="nav-link" href="/AJAX/php/sujets.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
                 </li>
             </ul>
+            <!-- connexion / utilisateur-->
             <?php
             if (connected()) {
             ?>
@@ -50,8 +54,8 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <div class="row">
-                                <div class="col-4">
-                                    <img src="<?php echo $connected_user->getRealPhoto()?>" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">
+                                <div class="col-2">
+                                    <img src="<?php echo $connected_user->getRealPhoto() ?>" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">
                                 </div>
                                 <div class="col">
                                     <?php echo $connected_user->getPseudo(); ?>
@@ -59,16 +63,17 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/AJAX/php/account.php" ><i class="fas fa-user"></i> Profil</a>
+                            <a class="dropdown-item" href="/AJAX/php/account.php"><i class="fas fa-user"></i> Profil</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item " href="/AJAX/php/deconnexion.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                         </div>
                     </li>
                 </ul>
-                
+
             <?php
             }
             ?>
+            <!-- fin connexion / utilisateur-->
         </div>
         <!--
             <input type="checkbox" id="switch" name="theme" />
@@ -76,38 +81,72 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
             -->
         </div>
     </nav>
-
-    <h1 class="d-flex justify-content-center">Bienvenue sur OuahJax !</h1>
-    <div class="container my-3">
+    <div class="container-fluid">
+        <h1 class="d-flex justify-content-center">Bienvenue sur OuahJax !</h1>
         <div class="row">
             <div class="col-12 col-xl-9">
-                <div class="container" style="margin-top: 2%;">
-                    <div class="col-12 col-md-12">
+                <div class="container my-3">
+                    <div class="col-12 col-md-12 content-element">
                         <div class="card w-1">
                             <div class="card-body">
                                 <h3 class="card-title"> <span class="fas fa-sitemap"></span> A propos du site</h3>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed vestibulum diam. Nullam a vulputate massa. Mauris tincidunt tortor et velit pellentesque gravida. Ut tempus sollicitudin nunc eu tempus. Aenean sagittis ante viverra ante malesuada, vel pharetra diam eleifend. Aliquam porta ante eget gravida tristique. Praesent eleifend enim a lorem.</p>
+                                <p class="card-text">
+                                    Bonjour, sur Ouahjax tu peux venir partager tes expériences, discuter d'un sujet qui te tient à coeur ou poser une question à la communauté
+                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="container" style="margin-top: 2%;">
-                    <div class="col-12 col-md-12">
+                    <div class="col-12 col-md-12 content-element">
                         <div class="card w-1">
                             <div class="card-body">
-                                <h3 class="card-title"> <span class="fas fa-sitemap"></span> Selection de sujets</h3>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed vestibulum diam. Nullam a vulputate massa. Mauris tincidunt tortor et velit pellentesque gravida. Ut tempus sollicitudin nunc eu tempus. Aenean sagittis ante viverra ante malesuada, vel pharetra diam eleifend. Aliquam porta ante eget gravida tristique. Praesent eleifend enim a lorem.</p>
+                                <h3 class="card-title"> <span class="fas fa-sitemap"></span> Sélection aléatoire de sujets</h3>
+                                <div class="card mt-3 mb-3">
+                                    <div class="card-header pl-0 pr-0">
+                                        <div class="row no-gutters w-100 align-items-center">
+                                            <div class="col ml-3">Sujets</div>
+                                            <div class="col-4 text-muted">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-4">Réponses</div>
+                                                    <div class="col-8">Dernière réponse</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                        $listeSujet = $ForumManager->getRandomSujet(5);
+                                        if($listeSujet){
+                                            for($i=0;$i<count($listeSujet);$i++){
+                                                $user = $Usermanager->getUserClientById($listeSujet[$i]->getUser_id());
+                                                $lastPost = $ForumManager->getLastPost($listeSujet[$i]->getId());
+                                                if($lastPost) {
+                                                    $userReponse = $Usermanager->getUserClientById($lastPost['id_user']);
+                                                    $photoReponse = $userReponse->getRealPhoto();
+                                                    $dateReponse = getDureeAvecDateTime($lastPost['date']);
+                                                    $pseudoReponse = $userReponse->getPseudo();
+                                                }else{
+                                                    $photoReponse = null;
+                                                    $dateReponse = null;
+                                                    $pseudoReponse = null;
+                                                }
+
+                                                echo getSujetLigne($listeSujet[$i]->getTitre(),getDureeAvecDateTime($listeSujet[$i]->getDate_post()), $user->getPseudo(),$ForumManager->getNombreReponses($listeSujet[$i]->getId()),$photoReponse,$dateReponse,$pseudoReponse);
+                                            }
+                                        }
+                                    ?>
+                                    
+
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-
             <div class="col-12 col-xl-3">
-                <aside>
+                <aside class="container my-3">
                     <div class="row">
-                        <div class="col-12 col-sm-6 col-xl-12">
+                        <!--<div class="col-12 col-sm-6 col-xl-12">
                             <div class="card mb-3 mb-sm-0 mb-xl-3">
                                 <div class="card-body">
                                     <h2 class="h4 card-title">Membres en ligne</h2>
@@ -135,22 +174,22 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
                                     </dl>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-12 col-sm-6 col-xl-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h2 class="h4 card-title">Statistiques</h2>
                                     <dl class="row mb-0">
                                         <dt class="col-8"> Forums</dt>
-                                        <dd class="col-4 mb-0"><?php echo $ForumManager->getNombreForum();?></dd>
+                                        <dd class="col-4 mb-0"><?php echo $ForumManager->getNombreForum(); ?></dd>
                                     </dl>
                                     <dl class="row mb-0">
                                         <dt class="col-8"> Sujets</dt>
-                                        <dd class="col-4 mb-0"><?php echo $ForumManager->getNombreSujet();?></dd>
+                                        <dd class="col-4 mb-0"><?php echo $ForumManager->getNombreSujet(); ?></dd>
                                     </dl>
                                     <dl class="row mb-0">
                                         <dt class="col-8"> Membres</dt>
-                                        <dd class="col-4 mb-0"><?php echo $Usermanager->getNombreMembre();?></dd>
+                                        <dd class="col-4 mb-0"><?php echo $Usermanager->getNombreMembre(); ?></dd>
                                     </dl>
                                 </div>
                             </div>
@@ -158,13 +197,13 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
                     </div>
                 </aside>
             </div>
+            <!--</div>-->
         </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
 
 </body>
 
