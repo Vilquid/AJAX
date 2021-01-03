@@ -1,40 +1,63 @@
 <?php
+
 /**
  * Manager qui gère les informations relatives au forum
  */
-class ForumManager{
+class ForumManager
+{
     private $_bdd = null;
 
     public function __construct()
-	{
-		$this->_bdd = new PDO("mysql:host=localhost;dbname=ouahjax", "ouahjax", "");
+    {
+        $this->_bdd = new PDO("mysql:host=localhost;dbname=ouahjax", "ouahjax", "");
     }
-    
-    public function getNombreForum(){
+
+    public function getNombreForum()
+    {
         $request = $this->_bdd->prepare("SELECT count(id) as nb FROM forums;");
-		$request->execute();
-		$data = $request->fetch(PDO::FETCH_ASSOC);
-		return $data['nb'];
+        $request->execute();
+        $data = $request->fetch(PDO::FETCH_ASSOC);
+        return $data['nb'];
     }
 
-    public function getNombreSujet(){
+    public function getNombreSujet()
+    {
         $request = $this->_bdd->prepare("SELECT count(id) as nb FROM sujets;");
-		$request->execute();
-		$data = $request->fetch(PDO::FETCH_ASSOC);
-		return $data['nb'];
+        $request->execute();
+        $data = $request->fetch(PDO::FETCH_ASSOC);
+        return $data['nb'];
     }
 
-    public function getRandomSujet($nb){
+    public function getRandomSujet($nb)
+    {
         $request = $this->_bdd->prepare("SELECT * FROM `sujets` ORDER BY RAND() LIMIT $nb");
         $request->execute();
         $data = $request->fetchAll(PDO::FETCH_ASSOC);
         $ret = [];
-        for($i = 0; $i < count($data); $i++) {
+        for ($i = 0; $i < count($data); $i++) {
             $ret[$i] = new ElementSujet($data[$i]);
         }
-        if(count($data)){
+        if (count($data)) {
             return $ret;
-        }else{
+        } else {
+            return null;
+        }
+    }
+
+
+    public function getSujetByForum($idforum)
+    {
+        
+        $request = $this->_bdd->prepare("SELECT * FROM `sujets` WHERE forum_id =  $idforum ");
+        $request->execute();
+        $data = $request->fetchAll(PDO::FETCH_ASSOC);
+        $ret = [];
+        for ($i = 0; $i < count($data); $i++) {
+            $ret[$i] = new ElementSujet($data[$i]);
+        }
+        if (count($data)) {
+            return $ret;
+        } else {
             return null;
         }
     }
@@ -43,9 +66,9 @@ class ForumManager{
         $request = $this->_bdd->prepare("SELECT count(id) AS nb FROM `messages` WHERE id_sujet = ?");
         $request->execute([$id]);
         $data = $request->fetch(PDO::FETCH_ASSOC);
-        if($data){
+        if ($data) {
             return $data['nb'];
-        }else{
+        } else {
             return 0;
         }
     }
