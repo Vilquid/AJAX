@@ -3,8 +3,11 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
 
+if(isset($_GET['forum'])){
+    if($_GET['forum'] > 0){
+        $forum = $_GET['forum'];
+        ?>
 
-?>
 
 
 <!DOCTYPE html>
@@ -85,7 +88,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
 
     <div class="container my-3">
         <nav class="breadcrumb ">
-            <h6 class="breadcrumb-item active"><a href="/AJAX/php/sujets.php">Index</a> &nbsp;/&nbsp; <a href="/AJAX/php/post.php" class="font-weight-bold">Nom du forum</a> </h6>
+            <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a href="/AJAX/php/sujets?forum=<?php echo $forum;?>.php" class="font-weight-bold"><?php echo $ForumManager->getForumName($forum);?></a> </h6>
         </nav>
 
         <div class="row">
@@ -129,12 +132,12 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
 
                     <?php
 
-                    $listeSujet = $ForumManager->getSujetByForum(1);
+                    $listeSujet = $ForumManager->getSujetByForum($_GET['forum']);
 
                     if ($listeSujet) {
                         for ($i = 0; $i < count($listeSujet); $i++) {
                             $user = $Usermanager->getUserClientById($listeSujet[$i]->getUser_id());
-                            $lastPost = $ForumManager->getLastPost($listeSujet[$i]->getId());
+                            $lastPost = $ForumManager->getLastPostSujet($listeSujet[$i]->getId());
                             if ($lastPost) {
                                 $userReponse = $Usermanager->getUserClientById($lastPost['id_user']);
                                 $photoReponse = $userReponse->getRealPhoto();
@@ -146,7 +149,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
                                 $pseudoReponse = null;
                             }
 
-                            echo getSujetLigne($listeSujet[$i]->getTitre(), getDureeAvecDateTime($listeSujet[$i]->getDate_post()), $user->getPseudo(), $ForumManager->getNombreReponses($listeSujet[$i]->getId()), $photoReponse, $dateReponse, $pseudoReponse);
+                            echo getSujetLigne($listeSujet[$i]->getTitre(), getDureeAvecDateTime($listeSujet[$i]->getDate_post()), $user->getPseudo(), $ForumManager->getNombreReponsesSujet($listeSujet[$i]->getId()), $photoReponse, $dateReponse, $pseudoReponse);
                             if ($i < count($listeSujet) - 1) {
                                 echo '<hr class="m-0">';
                             }
@@ -185,3 +188,12 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
 </body>
 
 </html>
+
+<?php
+    }else{
+        header("Location: /AJAX/php/forums");
+    }
+}else{
+    header("Location: /AJAX/php/forums");
+}
+?>

@@ -113,4 +113,15 @@ class ForumManager
         $request->execute([$forum_id]);
         return $request->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getForumName($forum_id) {
+        $request = $this->_bdd->prepare("SELECT titre FROM forums WHERE id = ?;");
+        $request->execute([$forum_id]);
+        $data = $request->fetch(PDO::FETCH_ASSOC);
+        if($data){
+            return $data['titre'];
+        }else{
+            return '';
+        } 
+    }
 }
