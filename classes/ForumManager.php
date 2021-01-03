@@ -49,7 +49,7 @@ class ForumManager
     public function getSujetByForum($idforum)
     {
         
-        $request = $this->_bdd->prepare("SELECT * FROM `sujets` WHERE forum_id =  $idforum ");
+        $request = $this->_bdd->prepare("SELECT * FROM `sujets` WHERE forum_id = $idforum ORDER BY date_post DESC");
         $request->execute();
         $data = $request->fetchAll(PDO::FETCH_ASSOC);
         $ret = [];
@@ -124,5 +124,26 @@ class ForumManager
         }else{
             return '';
         } 
+    }
+
+    public function forumExiste($forum_id){
+        $request = $this->_bdd->prepare("SELECT id FROM forums WHERE id = ?");
+        $request->execute([$forum_id]);
+        $data = $request->fetch(PDO::FETCH_ASSOC);
+        if($data){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function ajoutSujet($titre, $message, $forum_id, $user_id){
+        if($this->forumExiste($forum_id)){
+            $request = $this->_bdd->prepare("INSERT INTO sujets (titre,message,user_id, forum_id) VALUES (?,?,?,?)");
+            $request->execute([$titre, $message,$forum_id, $user_id]);
+            return $this->_bdd->lastInsertId();
+        }else{
+            return 0;
+        }
     }
 }
