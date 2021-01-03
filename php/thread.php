@@ -156,7 +156,7 @@ if (isset($_SESSION['user_id'])) {
                     <?php
                     if (!$connected_user) {
                     ?>
-                        <a href="/AJAX/php/login.php" onclick="#"><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
+                        <a href="/AJAX/php/login.php" onclick=""><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
 
                     <?php
                     } else {
