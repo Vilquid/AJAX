@@ -10,6 +10,7 @@ class UserManager
 	public function __construct()
 	{
 		$this->_bdd = new PDO("mysql:host=localhost;dbname=ouahjax", "ouahjax", "");
+        $this->_bdd->exec("SET NAMES utf8;");
 	}
 
 	public function emailExist($email)
