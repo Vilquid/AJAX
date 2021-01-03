@@ -34,7 +34,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/AJAX/php/sujets.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
+                    <a class="nav-link" href="/AJAX/php/forums.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
                 </li>
             </ul>
             <!-- connexion / utilisateur-->
@@ -118,7 +118,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
                                         if($listeSujet){
                                             for($i=0;$i<count($listeSujet);$i++){
                                                 $user = $Usermanager->getUserClientById($listeSujet[$i]->getUser_id());
-                                                $lastPost = $ForumManager->getLastPost($listeSujet[$i]->getId());
+                                                $lastPost = $ForumManager->getLastPostSujet($listeSujet[$i]->getId());
                                                 if($lastPost) {
                                                     $userReponse = $Usermanager->getUserClientById($lastPost['id_user']);
                                                     $photoReponse = $userReponse->getRealPhoto();
@@ -130,7 +130,10 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
                                                     $pseudoReponse = null;
                                                 }
 
-                                                echo getSujetLigne($listeSujet[$i]->getTitre(),getDureeAvecDateTime($listeSujet[$i]->getDate_post()), $user->getPseudo(),$ForumManager->getNombreReponses($listeSujet[$i]->getId()),$photoReponse,$dateReponse,$pseudoReponse);
+                                                echo getSujetLigne($listeSujet[$i]->getTitre(),$listeSujet[$i]->getId(),getDureeAvecDateTime($listeSujet[$i]->getDate_post()), $user->getPseudo(),$ForumManager->getNombreReponsesSujet($listeSujet[$i]->getId()),$photoReponse,$dateReponse,$pseudoReponse);
+                                                if($i <count($listeSujet)-1){
+                                                    echo '<hr class="m-0">';
+                                                }
                                             }
                                         }
                                     ?>
