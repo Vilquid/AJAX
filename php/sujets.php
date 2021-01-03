@@ -148,6 +148,7 @@ if (isset($_GET['forum'])) {
 
 
                         </div>
+                        <!--
                         <nav>
                             <ul class="pagination mb-5">
                                 <li class="page-item disabled"><a class="page-link" href="javascript:void(0)" data-abc="true">«</a></li>
@@ -156,7 +157,7 @@ if (isset($_GET['forum'])) {
                                 <li class="page-item"><a class="page-link" href="javascript:void(0)" data-abc="true">3</a></li>
                                 <li class="page-item"><a class="page-link" href="javascript:void(0)" data-abc="true">»</a></li>
                             </ul>
-                        </nav>
+                        </nav>-->
                     </div>
 
 
