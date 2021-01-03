@@ -130,7 +130,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
                                                     $pseudoReponse = null;
                                                 }
 
-                                                echo getSujetLigne($listeSujet[$i]->getTitre(),getDureeAvecDateTime($listeSujet[$i]->getDate_post()), $user->getPseudo(),$ForumManager->getNombreReponsesSujet($listeSujet[$i]->getId()),$photoReponse,$dateReponse,$pseudoReponse);
+                                                echo getSujetLigne($listeSujet[$i]->getTitre(),$listeSujet[$i]->getId(),getDureeAvecDateTime($listeSujet[$i]->getDate_post()), $user->getPseudo(),$ForumManager->getNombreReponsesSujet($listeSujet[$i]->getId()),$photoReponse,$dateReponse,$pseudoReponse);
                                                 if($i <count($listeSujet)-1){
                                                     echo '<hr class="m-0">';
                                                 }

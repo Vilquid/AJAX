@@ -1,5 +1,5 @@
 <?php
-function getSujetLigne($nomSujet, $dateSujet, $nomAuteurSujet, $reponses, $photoReponse=null, $dateReponse=null, $nomResponse=null)
+function getSujetLigne($nomSujet, $idSujet, $dateSujet, $nomAuteurSujet, $reponses, $photoReponse=null, $dateReponse=null, $nomResponse=null)
 {
     if(!$photoReponse || !$dateReponse || !$nomResponse || !$dateReponse){
         $last = 'Il n\'y a pas de réponse';
@@ -9,7 +9,7 @@ function getSujetLigne($nomSujet, $dateSujet, $nomAuteurSujet, $reponses, $photo
     $ret = '
     <div class="card-body py-3">
         <div class="row no-gutters align-items-center">
-            <div class="col"> <a href="/AJAX/php/posts.php" class="text-big" data-abc="true">'.$nomSujet.'</a>
+            <div class="col"> <a href="/AJAX/php/posts?sujet='.$idSujet.'.php" class="text-big" data-abc="true">'.$nomSujet.'</a>
                 <div class="text-muted small mt-1">Commencé il y a '.$dateSujet.' &nbsp;·&nbsp; <a href="javascript:void(0)" class="text-muted" data-abc="true">'.$nomAuteurSujet.'</a></div>
             </div>
             <div class="d-none d-md-block col-4">
