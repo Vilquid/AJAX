@@ -18,3 +18,8 @@ function getDureeAvecDateTime($datetime){
         return $diff->format('%s seconde').(($diff->s > 1)?'s':'');
     }
 }
+
+function getDateAvecDateTime($datetime){
+    $date = new DateTime($datetime);
+    return $date->format('%D/%M/%Y');
+}
