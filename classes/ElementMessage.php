@@ -9,6 +9,7 @@ class ElementMessage{
      private $_message = '';
      private $_id_user = 0;
      private $_date = '';
+     private $_id_parent = 0;
 
     
     public function getId(){return $this->_id;}
@@ -23,6 +24,8 @@ class ElementMessage{
     public function setDate($date){$this->_date=$date;}
     public function getId_sujet(){return $this->_id_sujet;}
     public function setId_sujet($id_sujet){$this->_id_sujet=$id_sujet;}
+    public function getId_parent(){return $this->_id_parent;}
+    public function setId_parent($id_parent){$this->_id_parent=$id_parent;}
 
      private function hydrate($data) {
         foreach ($data as $key => $value) {
