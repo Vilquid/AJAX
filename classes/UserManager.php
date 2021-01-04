@@ -41,6 +41,17 @@ class UserManager
 		}
 	}
 
+	public function getUserEmail($id){
+		$request = $this->_bdd->prepare("SELECT email FROM users WHERE id = ?");
+		$request->execute([$id]);
+		$data = $request->fetch(PDO::FETCH_ASSOC);
+		if ($data) {
+			return $data['email'];
+		} else {
+			return null;
+		}
+	}
+
 	public function getPseudoById($id) {
 		$request = $this->_bdd->prepare("SELECT pseudo FROM users WHERE id = ?");
 		$request->execute([$id]);
@@ -106,5 +117,10 @@ class UserManager
 		$request->execute();
 		$data = $request->fetch(PDO::FETCH_ASSOC);
 		return $data['nb'];
+	}
+
+	public function changePhoto($user_id, $photo_bin){
+		$request = $this->_bdd->prepare("UPDATE users SET photo = ? WHERE id = ?");
+		$request->execute([$photo_bin, $user_id]);
 	}
 }

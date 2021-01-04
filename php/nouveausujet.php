@@ -2,7 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
 
 
-if (isset($_GET['forum'])) {
+if (isset($_GET['forum']) && !connected()) {
     if ($ForumManager->forumExiste($_GET['forum'])) {
         $forum = $_GET['forum'];
 

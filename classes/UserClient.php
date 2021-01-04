@@ -11,6 +11,8 @@ class UserClient
     private $_photo='';
     private $_date_creation='';
 
+    private $_email='';
+
     public function setId($id) {$this->_id=$id;}
     public function getId() {return $this->_id;}
     public function setPseudo($pseudo) {$this->_pseudo=$pseudo;}
@@ -19,6 +21,9 @@ class UserClient
     public function getPhoto() {return $this->_photo;}
     public function setDate_creation($date_creation) {$this->_date_creation=$date_creation;}
     public function getDate_creation() {return $this->_date_creation;}
+
+    public function setEmail($email) {$this->_email=$email;}
+    public function getEmail() { return $this->_email;}
 
     private function hydrate($data) {
         foreach ($data as $key => $value) {
