@@ -1,5 +1,5 @@
 <?php
-class ElementSujet{
+class ElementMessage{
     /**
      * Fait pour la liste des messages sur la page post
      */
