@@ -28,12 +28,14 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
 
-                    <a class="nav-link" href="/AJAX/index.php"><span><i class="fas fa-home"> </i></span class="sr-only"> Accueil</a>
+                    <a class="nav-link" href="/AJAX/index.php"><span><i class="fas fa-home"> </i></span class="sr-only">
+                        Accueil</a>
                 </li>
 
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/AJAX/php/forums.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
+                    <a class="nav-link" href="/AJAX/php/forums.php"><span><i class="fab fa-wpforms"></i></span>
+                        Forum</a>
                 </li>
             </ul>
             <!-- connexion / utilisateur-->
@@ -64,7 +66,8 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/AJAX/php/account.php"><i class="fas fa-user"></i> Profil</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item " href="/AJAX/php/deconnexion.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                            <a class="dropdown-item " href="/AJAX/php/deconnexion.php"><i class="fas fa-sign-out-alt"></i>
+                                Déconnexion</a>
                         </div>
                     </li>
                 </ul>
@@ -96,7 +99,8 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
                     <div class="card mb-4">
                         <div class="card-header">
                             <div class="media flex-wrap w-100 align-items-center"> <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/64/avatar-default-icon.png" class="d-block ui-w-40 rounded-circle" alt="">
-                                <div class="media-body ml-3"><a href="javascript:void(0)" data-abc="true">David Gousserand</a>
+                                <div class="media-body ml-3"><a href="javascript:void(0)" data-abc="true">David
+                                        Gousserand</a>
                                     <div class="text-muted small">Il y a 5 jours</div>
                                 </div>
                                 <div class="text-muted small ml-3">
@@ -121,7 +125,8 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
                     <div class="card mb-4">
                         <div class="card-header">
                             <div class="media flex-wrap w-100 align-items-center"> <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/64/avatar-default-icon.png" class="d-block ui-w-40 rounded-circle" alt="">
-                                <div class="media-body ml-3"> <a href="javascript:void(0)" data-abc="true">Random du net</a>
+                                <div class="media-body ml-3"> <a href="javascript:void(0)" data-abc="true">Random du
+                                        net</a>
                                     <div class="text-muted small">Il y a 1 jour</div>
                                 </div>
                                 <div class="text-muted small ml-3">
@@ -143,7 +148,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
                                 <?php
                                 } else {
                                 ?>
-                                    <a href="#TextAreaLocation" id="functionchange2" onclick="test2()"><button type="button" class="btn btn-sm btn-outline-danger">Répondre</button></a>
+                                    <a href="#TextAreaLocation" style="text-decoration: none;"><button id="answerbutton" onclick="test2()" type="button" class="btn btn-sm btn-outline-danger">Répondre</button></a>
                                 <?php
                                 }
                                 ?>
@@ -158,16 +163,14 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
                     <?php
                     if (!$connected_user) {
                     ?>
-                        <a href="/AJAX/php/login.php" onclick=""><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
+                        <a href="/AJAX/php/login.php" style="text-decoration: none;"><button onclick="" type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
 
                     <?php
                     } else {
                     ?>
                         <div>
-
-                            <a href="#TextAreaLocation" id="functionchange1" onclick="test1()"><button type="button" id="Send" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
-                            <a onclick="" id="functionchange3"><div id="RevertChange"></div></a>
-
+                            <a href="#TextAreaLocation" style="text-decoration: none;"><button type="button" id="Send" onclick="test1()" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
+                            <button id="RevertChange" onclick="" type="button" style="display: none;""></button>
                         </div>
                     <?php
                     }
@@ -175,11 +178,11 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
                 </div>
             </div>
 
-            <script src="/AJAX/js/answer.js"></script>
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-            <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
-            <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
+            <script src=" /AJAX/js/answer.js"></script>
+                                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+                                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+                                <script src="/AJAX/bootstrap/js/bootstrap.min.js"></script>
+                                <script src="https://kit.fontawesome.com/bb5c883aee.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

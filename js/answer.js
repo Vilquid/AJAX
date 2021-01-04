@@ -1,10 +1,7 @@
 var container = document.getElementById("TextAreaLocation");
 var sendbutton = document.getElementById("Send");
 var revertbutton = document.getElementById("RevertChange");
-
-var functionchange1 = document.getElementById("functionchange1");
-var functionchange2 = document.getElementById("functionchange2");
-var functionchange3 = document.getElementById("functionchange3");
+var answerbutton = document.getElementById("answerbutton");
 
 var area = document.createElement("textarea");
 
@@ -32,17 +29,14 @@ function showEditBox2() {
 function showSendButton() {
     sendbutton.innerHTML = "Envoyer la réponse";
     sendbutton.setAttribute("class", "btn btn-primary btn-success btn-lg btn-block");
-
+    sendbutton.setAttribute("onclick", "sendAnswer()");
 
     revertbutton.innerHTML = "Annuler";
     revertbutton.setAttribute("class", "btn btn-primary btn-secondary btn-lg btn-block");
     revertbutton.setAttribute("style", "display:block;");
+    revertbutton.setAttribute("onclick", "revertChange()");
 
-
-    functionchange1.setAttribute("onclick", "sendAnswer()");
-    functionchange2.removeAttribute("onclick");
-
-    functionchange3.setAttribute("onclick", "revertChange()");
+    answerbutton.removeAttribute("onclick");
 
 }
 
@@ -57,10 +51,15 @@ function revertChange() {
 
     revertbutton.setAttribute("style", "display:none;");
 
-    functionchange1.setAttribute("onclick", "test1()");
-    functionchange2.setAttribute("onclick", "test2()");
+    sendbutton.setAttribute("onclick", "test1()");
+    answerbutton.setAttribute("onclick", "test2()");
 
 }
+
+function sendAnswer() {
+
+}
+
 
 function test1() {
     showEditBox();
