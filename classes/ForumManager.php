@@ -139,7 +139,7 @@ class ForumManager
 
     public function ajoutSujet($titre, $message, $forum_id, $user_id){
         if($this->forumExiste($forum_id)){
-            $request = $this->_bdd->prepare("INSERT INTO sujets (titre,message,user_id, forum_id) VALUES (?,?,?,?)");
+            $request = $this->_bdd->prepare("INSERT INTO sujets (titre,message, forum_id, user_id) VALUES (?,?,?,?)");
             $request->execute([$titre, $message,$forum_id, $user_id]);
             return $this->_bdd->lastInsertId();
         }else{
