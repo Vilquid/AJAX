@@ -10,7 +10,7 @@ class UserManager
 	public function __construct()
 	{
 		$this->_bdd = new PDO("mysql:host=localhost;dbname=ouahjax", "ouahjax", "");
-        $this->_bdd->exec("SET NAMES utf8;");
+		$this->_bdd->exec("SET NAMES utf8;");
 	}
 
 	public function emailExist($email)
@@ -30,7 +30,8 @@ class UserManager
 	}
 
 
-	public function getUserClientById($id) {
+	public function getUserClientById($id)
+	{
 		$request = $this->_bdd->prepare("SELECT id, pseudo, photo, date_creation FROM users WHERE id = ?");
 		$request->execute([$id]);
 		$data = $request->fetch(PDO::FETCH_ASSOC);
@@ -41,7 +42,8 @@ class UserManager
 		}
 	}
 
-	public function getUserEmail($id){
+	public function getUserEmail($id)
+	{
 		$request = $this->_bdd->prepare("SELECT email FROM users WHERE id = ?");
 		$request->execute([$id]);
 		$data = $request->fetch(PDO::FETCH_ASSOC);
@@ -52,7 +54,8 @@ class UserManager
 		}
 	}
 
-	public function getPseudoById($id) {
+	public function getPseudoById($id)
+	{
 		$request = $this->_bdd->prepare("SELECT pseudo FROM users WHERE id = ?");
 		$request->execute([$id]);
 		$data = $request->fetch(PDO::FETCH_ASSOC);
@@ -68,24 +71,20 @@ class UserManager
 		$request = $this->_bdd->prepare("SELECT photo FROM users, messages WHERE users.id = messages.id_user AND messages.id = ?;");
 		$request->execute([$id_message]);
 		$data = $request->fetch(PDO::FETCH_ASSOC);
-		if($data)
-		{
+		if ($data) {
 			return $data["photo"];
-		}
-		else
-		{
+		} else {
 			return null;
 		}
 	}
-	
+
 	public function addUser($pseudo, $email, $password)
 	{
-		$hash_password = password_hash($password,PASSWORD_BCRYPT,$this->_password_crypt_option);
+		$hash_password = password_hash($password, PASSWORD_BCRYPT, $this->_password_crypt_option);
 		$a = $this->emailExist($email);
 		$b = $this->pseudoExist($pseudo);
 
-		if ($a == false && $b == false)
-		{
+		if ($a == false && $b == false) {
 			$request = $this->_bdd->prepare("INSERT INTO `users` (pseudo, email, `password`) VALUES (?, ?, ?);");
 			$request->execute([$pseudo, $email, $hash_password]);
 			if ($request->errorInfo()[0] == 0) {
@@ -103,24 +102,56 @@ class UserManager
 		$request = $this->_bdd->prepare("SELECT id, password FROM users WHERE email= ?;");
 		$request->execute([$email]);
 		$data = $request->fetch(PDO::FETCH_ASSOC);
-		if($data){
-			if(password_verify($password, $data['password'])){
+		if ($data) {
+			if (password_verify($password, $data['password'])) {
 				return $data['id'];
 			}
-		}else{
+		} else {
 			return 0;
 		}
 	}
 
-	public function getNombreMembre(){
+	public function getNombreMembre()
+	{
 		$request = $this->_bdd->prepare("SELECT count(id) as nb FROM users;");
 		$request->execute();
 		$data = $request->fetch(PDO::FETCH_ASSOC);
 		return $data['nb'];
 	}
 
-	public function changePhoto($user_id, $photo_bin){
+	public function changePhoto($user_id, $photo_bin)
+	{
 		$request = $this->_bdd->prepare("UPDATE users SET photo = ? WHERE id = ?");
 		$request->execute([$photo_bin, $user_id]);
+	}
+
+	public function changePseudo($user_id, $pseudo)
+	{
+		$request = $this->_bdd->prepare("UPDATE users SET pseudo = ? WHERE id = ?");
+		$request->execute([$pseudo, $user_id]);
+	}
+	public function changeEmail($user_id, $email)
+	{
+		$request = $this->_bdd->prepare("UPDATE users SET email = ? WHERE id = ?");
+		$request->execute([$email, $user_id]);
+	}
+
+	public function changePassword($user_id, $oldpassword, $newpassword)
+	{
+		$request = $this->_bdd->prepare("SELECT password FROM users WHERE id= ?;");
+		$request->execute([$user_id]);
+		$data = $request->fetch(PDO::FETCH_ASSOC);
+		if ($data) {
+			if (password_verify($oldpassword, $data['password'])) {
+				$newpassword_hash = password_hash($newpassword, PASSWORD_BCRYPT, $this->_password_crypt_option);
+				$request = $this->_bdd->prepare("UPDATE users SET password = ? WHERE id = ?");
+				$request->execute([$newpassword_hash, $user_id]);
+				return 1;
+			}else{
+				return 0;
+			}
+		} else {
+			return 0;
+		}
 	}
 }

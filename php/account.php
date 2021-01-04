@@ -94,52 +94,52 @@ if (!connected()) {
                         <form>
                             <!-- pseudo -->
                             <label class="h6 form-control-label">Pseudo</label>
-                            <div class="input-group mb-3">
+                            <div id="static-pseudo" class="input-group mb-3">
                                 <span class="ml-3 form-text"><?php echo $connected_user->getPseudo(); ?></span>
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-primary ml-5 allign-right" value="Submit">Changer</button>
+                                    <button type="button" class="btn btn-primary ml-5 allign-right" id="change-pseudo-button">Changer</button>
                                 </div>
                             </div>
-                            <div class="input-group mb-3 change-field">
-                                <input type="text" class="form-control" placeholder="Nouveau pseudo" value="<?php echo $connected_user->getPseudo(); ?>" required pattern="[0-9a-zA-Z_]{4,20}">
+                            <div id="change-pseudo-form" class="input-group mb-3 change-field">
+                                <input type="text" id="pseudo-field" class="form-control" placeholder="Nouveau pseudo" value="<?php echo $connected_user->getPseudo(); ?>" required pattern="[0-9a-zA-Z_]{4,20}">
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-success" value="Submit">Envoyer</button>
-                                    <button type="button" class="btn btn-danger" value="Submit">Annuler</button>
+                                    <button type="button" class="btn btn-success" id="upload-pseudo">Envoyer</button>
+                                    <button type="button" class="btn btn-danger" id="cancel-change-pseudo">Annuler</button>
                                 </div>
                             </div>
                             <hr>
                             <!-- email -->
                             <label class="h6 form-control-label">Adresse e-mail</label>
-                            <div class="input-group mb-3">
+                            <div id="static-email" class="input-group mb-3">
                                 <span class="ml-3"><?php echo $connected_user->getEmail(); ?></span>
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-primary ml-5 allign-right" value="Submit">Changer</button>
+                                    <button type="button" class="btn btn-primary ml-5 allign-right" id="change-email-button">Changer</button>
                                 </div>
                             </div>
-                            <div class="input-group mb-3 change-field">
-                                <input type="text" class="form-control" value="<?php echo $connected_user->getEmail(); ?>">
+                            <div id="change-email-form" class="input-group mb-3 change-field">
+                                <input type="email" id="email-field" class="form-control" value="<?php echo $connected_user->getEmail(); ?>" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-success" value="Submit">Envoyer</button>
-                                    <button type="button" class="btn btn-danger" value="Submit">Annuler</button>
+                                    <button type="button" class="btn btn-success" id="upload-email">Envoyer</button>
+                                    <button type="button" class="btn btn-danger" id="cancel-change-email">Annuler</button>
                                 </div>
                             </div>
 
                             <hr>
                             <!-- password -->
                             <label class="h6 form-control-label">Mot de passe</label>
-                            <div class="input-group mb-3">
+                            <div id="static-password" class="input-group mb-3">
                                 <span class="ml-3 text-muted form-text">************</span>
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-primary ml-5 allign-right" value="Submit">Changer</button>
+                                    <button type="button" class="btn btn-primary ml-5 allign-right" id="change-password-button">Changer</button>
                                 </div>
                             </div>
-                            <div class="form-group mb-3 change-field">
-                                <input type="text" class="form-control mb-3" placeholder="Ancien mot de passe">
-                                <input type="text" class="form-control mb-3" placeholder="Nouveau mot de passe">
-                                <input type="text" class="form-control mb-3" placeholder="Confirmer nouveau mot de passe">
+                            <div id="change-password-form" class="form-group mb-3 change-field">
+                                <input type="password" id="old-password-field" class="form-control mb-3" placeholder="Ancien mot de passe" required minlength="6">
+                                <input type="password" id="new-password-field" class="form-control mb-3" placeholder="Nouveau mot de passe" required minlength="6">
+                                <input type="password" id="new-conf-password-field" class="form-control mb-3" placeholder="Confirmer nouveau mot de passe" required minlength="6">
                                 <div class="input-group mb-3">
-                                    <button type="button" class="btn btn-success" value="Submit">Envoyer</button>
-                                    <button type="button" class="btn btn-danger" value="Submit">Annuler</button>
+                                    <button type="button" class="btn btn-success" id="upload-password">Envoyer</button>
+                                    <button type="button" class="btn btn-danger" id="cancel-change-password">Annuler</button>
                                 </div>
                             </div>
 
