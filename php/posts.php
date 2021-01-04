@@ -1,20 +1,7 @@
 <?php
-session_start();
-function chargerClasse($classe)
-{
-    require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/classes/$classe.php";
-}
-spl_autoload_register('chargerClasse');
-if (isset($_SESSION['user_id'])) {
-    if ($_SESSION['user_id'] != 0) {
-        $manager = new UserManager();
-        $connected_user = $manager->getPseudoById($_SESSION['user_id']);
-    } else {
-        $connected_user = null;
-    }
-} else {
-    $connected_user = null;
-}
+require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/pageInitialisation.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/dateFormater.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
 
 ?>
 
@@ -30,7 +17,7 @@ if (isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class=" navbar-brand" href="/AJAX/index.php">OuahJax</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,21 +26,19 @@ if (isset($_SESSION['user_id'])) {
 
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item ">
+                <li class="nav-item">
 
-                    <a class="nav-link" href="/AJAX/index.php"><span><i class="fas fa-home"> </i></span class="sr-only">
-                        Accueil</a>
+                    <a class="nav-link" href="/AJAX/index.php"><span><i class="fas fa-home"> </i></span class="sr-only"> Accueil</a>
                 </li>
 
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/AJAX/php/forums.php"><span><i class="fab fa-wpforms"></i></span>
-                        Forum</a>
+                    <a class="nav-link" href="/AJAX/php/forums.php"><span><i class="fab fa-wpforms"></i></span> Forum</a>
                 </li>
             </ul>
-
+            <!-- connexion / utilisateur-->
             <?php
-            if (!$connected_user) {
+            if (connected()) {
             ?>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item ">
@@ -67,7 +52,14 @@ if (isset($_SESSION['user_id'])) {
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/64/avatar-default-icon.png" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">
+                            <div class="row">
+                                <div class="col-1">
+                                    <img src="<?php echo $connected_user->getRealPhoto() ?>" alt="" class="d-block ui-w-30 rounded-circle" height="30px" width="30px">
+                                </div>
+                                <div class="col text-center">
+                                    <?php echo $connected_user->getPseudo(); ?>
+                                </div>
+                            </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/AJAX/php/account.php"><i class="fas fa-user"></i> Profil</a>
@@ -76,15 +68,13 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"><?php echo $connected_user; ?></a>
-                    </li>
-                </ul>
+
             <?php
             }
             ?>
-            <!--
+            <!-- fin connexion / utilisateur-->
+        </div>
+        <!--
             <input type="checkbox" id="switch" name="theme" />
             <label id="darkmode" for="switch"><span class="fas fa-sun"> / </span> <span class="fas fa-moon"></span></label>
             -->
@@ -121,7 +111,7 @@ if (isset($_SESSION['user_id'])) {
 
                         </div>
                         <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
-                            <div class="px-4 pt-3"> <button type="button" class="btn btn-sm btn-outline-danger">Répondre</button> </div>
+
                             <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
                         </div>
                     </div>
@@ -144,15 +134,27 @@ if (isset($_SESSION['user_id'])) {
                             <p>D'accord</p>
                         </div>
                         <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3 ">
-                            <div class="px-4 pt-3"> <button type="button" class="btn btn-sm btn-outline-danger" id="answer">Répondre</button> </div>
-                            <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
+                            <div class="px-4 pt-3">
+                                <?php
+                                if (!$connected_user) {
+                                ?>
+                                    <a href="/AJAX/php/login.php" onclick=""><button type="button" class="btn btn-sm btn-outline-danger">Répondre</button></a>
+
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="#TextAreaLocation" id="functionchange2" onclick="test2()"><button type="button" class="btn btn-sm btn-outline-danger">Répondre</button></a>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <div class="px-4 pt-3"><a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a></div>
                         </div>
                     </div>
-                    <div id="EditBoxContainer"></div>
+                    <div id="TextAreaLocation"></div>
                 </div>
 
                 <div class="col-md-12">
-
                     <?php
                     if (!$connected_user) {
                     ?>
@@ -161,7 +163,12 @@ if (isset($_SESSION['user_id'])) {
                     <?php
                     } else {
                     ?>
-                        <a href="javascript: void(0);" onclick="showEditBox()"><button type="button" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
+                        <div>
+
+                            <a href="#TextAreaLocation" id="functionchange1" onclick="test1()"><button type="button" id="Send" class="btn btn-primary btn-danger btn-lg btn-block">Répondre au sujet</button></a>
+                            <a onclick="" id="functionchange3"><div id="RevertChange"></div></a>
+
+                        </div>
                     <?php
                     }
                     ?>
