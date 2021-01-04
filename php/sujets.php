@@ -88,7 +88,7 @@ if (isset($_GET['forum'])) {
 
             <div class="container my-3">
                 <nav class="breadcrumb ">
-                    <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a href="/AJAX/php/sujets?forum=<?php echo $forum; ?>.php" class="font-weight-bold"><?php echo $ForumManager->getForumName($forum); ?></a> </h6>
+                    <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a href="/AJAX/php/sujets.php?forum=<?php echo $forum; ?>" class="font-weight-bold"><?php echo $ForumManager->getForumName($forum); ?></a> </h6>
                 </nav>
 
                 <div class="row">
