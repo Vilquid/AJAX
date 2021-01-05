@@ -96,7 +96,7 @@ if (isset($_GET['sujet'])) {
             <div class="container my-3">
 
                 <nav class="breadcrumb ">
-                    <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a href="/AJAX/php/sujets.php?forum=<?php echo $forum; ?>"><?php echo $ForumManager->getForumName($forum); ?></a> &nbsp;/&nbsp; <a href="/AJAX/php/posts.php?sujet=<?php echo $sujet; ?>"><?php echo $ForumManager->getSujetName($sujet); ?></a> </h6>
+                    <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a id="listesujets" href="/AJAX/php/sujets.php?forum=<?php echo $forum; ?>"><?php echo $ForumManager->getForumName($forum); ?></a> &nbsp;/&nbsp; <a href="/AJAX/php/posts.php?sujet=<?php echo $sujet; ?>"><?php echo $ForumManager->getSujetName($sujet); ?></a> </h6>
                 </nav>
 
                 <div class="row">
@@ -128,7 +128,7 @@ if (isset($_GET['sujet'])) {
                                 ?>
                                         <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
 
-                                            <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
+                                            <div class="px-4 pt-3"> <a href="javascript:supprimerSujet(<?php echo $sujet; ?>)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
                                         </div>
                                 <?php }
                                 } ?>
@@ -152,9 +152,12 @@ if (isset($_GET['sujet'])) {
                                                 <div class="media-body ml-3"><a href="javascript:void(0)" data-abc="true"><?php echo $sujetuser->getPseudo(); ?></a>
                                                     <div class="text-muted small">Il y a <?php echo getDureeAvecDateTime($listemessages[$i]->getDate()); ?></div>
                                                 </div>
-                                                <?php if ($listemessages[$i]->getId_parent()) {
+                                                <?php if ($listemessages[$i]->getId_parent() != null) {
                                                 ?>
                                                     <div class="media-body">En réponse à :
+                                                    <?php if($listemessages[$i]->getId_parent() == 0){
+                                                        ?>
+                                                        <a href="#<?php echo $listemessages[$i]->getId_parent(); ?>"><?php echo $listemessages[$i]->getId_parent(); ?></a>
                                                         <a href="#<?php echo $listemessages[$i]->getId_parent(); ?>"><?php echo $listemessages[$i]->getId_parent(); ?></a>
                                                     </div>
                                                 <?php }
@@ -189,7 +192,7 @@ if (isset($_GET['sujet'])) {
                                             if (!connected()) {
                                                 if ($sujetuser->getId() == $connected_user->getId()) {
                                             ?>
-                                                    <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
+                                                    <div class="px-4 pt-3"> <a href="javascript:supprimerMessage(<?php echo $listemessages[$i]->getId(); ?>)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
 
                                             <?php }
                                             } ?>

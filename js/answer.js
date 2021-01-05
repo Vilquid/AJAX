@@ -85,6 +85,20 @@ function receiveMessageConfirmation(data) {
     }
 }
 
+function receiveDeleteMessage(data) {
+    console.log(data);
+    if (data == 'success') {
+        //document.location.reload();
+    }
+}
+
+function receiveDeleteSujet(data) {
+    console.log(data);
+    if (data == 'success') {
+        document.location.href = document.getElementById("listesujets").getAttribute("href");
+    }
+}
+
 function sendAJAX(formData, url, callback) {
     let xhr = getXMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -96,6 +110,22 @@ function sendAJAX(formData, url, callback) {
     xhr.send(formData);
 }
 
+
+function supprimerMessage(id) {
+    let newformdata = new FormData();
+    newformdata.append("type", "message");
+    newformdata.append("id", id);
+    sendAJAX(newformdata, "/AJAX/ajax/delMessage.php", receiveDeleteMessage);
+
+}
+
+function supprimerSujet(id) {
+    let newformdata = new FormData();
+    newformdata.append("type", "sujet");
+    newformdata.append("id", id);
+    sendAJAX(newformdata, "/AJAX/ajax/delMessage.php", receiveDeleteSujet);
+
+}
 
 function test1() {
     showEditBox();

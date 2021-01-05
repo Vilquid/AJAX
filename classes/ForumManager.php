@@ -81,7 +81,18 @@ class ForumManager
         }
     }
 
+    public function getMessageById($idmessage)
+    {
 
+        $request = $this->_bdd->prepare("SELECT * FROM `messages` WHERE id = $idmessage");
+        $request->execute();
+        $data = $request->fetch(PDO::FETCH_ASSOC);
+        if ($data) {
+            return new ElementMessage($data);
+        } else {
+            return null;
+        }
+    }
 
     public function getSujetById($idsujet)
     {
@@ -226,6 +237,15 @@ class ForumManager
         }
     }
 
+    public function supprimerSujet($id)
+    {
+        $request = $this->_bdd->prepare("DELETE FROM messages WHERE id_sujet = ?");
+        $request->execute([$id]);
+
+        $request = $this->_bdd->prepare("DELETE FROM sujets WHERE id = ?");
+        $request->execute([$id]);
+    }
+
     public function verifMessageSujet($parent, $sujet_id)
     {
         $request = $this->_bdd->prepare("SELECT id_sujet FROM messages WHERE id = ?");
@@ -251,5 +271,19 @@ class ForumManager
             $request = $this->_bdd->prepare("INSERT INTO messages (message, id_sujet,id_user) VALUES (?,?,?)");
             $request->execute([$message, $sujet_id, $user_id]);
         }
+    }
+
+    public function supprimerMessage($id)
+    {
+        $request = $this->_bdd->prepare("SELECT * FROM messages WHERE id_parent = ?");
+        $request->execute([$id]);
+        print_r($request->fetch(PDO::FETCH_ASSOC));
+
+        $request = $this->_bdd->prepare("UPDATE messages SET id_parent = 0 WHERE id_parent = ?");
+        $request->execute([$id]);
+
+        $request = $this->_bdd->prepare("DELETE FROM messages WHERE id = ?");
+        $request->execute([$id]);
+
     }
 }
