@@ -108,7 +108,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/AJAX/require/HTMLgenerator.php";
                                 $nbPost = $ForumManager->getNombrePostForum($listeForum[$i]['id']);
                                 $lastPost = $ForumManager->getLastPostForum($listeForum[$i]['id']);
                                 if ($lastPost) {
-                                    $nomLastSujet = $lastPost['titre'];
+                                    $nomLastSujet = htmlspecialchars($lastPost['titre']);
                                     $idLastSujet = $lastPost['id_sujet'];
                                     $dateReponse = getDureeAvecDateTime($lastPost['date']);
                                     $userReponse = $Usermanager->getUserClientById($lastPost['id_user']);

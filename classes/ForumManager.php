@@ -15,7 +15,7 @@ class ForumManager
 
     public function getNombreForum()
     {
-        $request = $this->_bdd->prepare("SELECT count(id) as nb FROM forums;");
+        $request = $this->_bdd->prepare("SELECT count(id) as nb FROM forums  WHERE id != 0;");
         $request->execute();
         $data = $request->fetch(PDO::FETCH_ASSOC);
         return $data['nb'];
@@ -23,7 +23,7 @@ class ForumManager
 
     public function getNombreSujet()
     {
-        $request = $this->_bdd->prepare("SELECT count(id) as nb FROM sujets;");
+        $request = $this->_bdd->prepare("SELECT count(id) as nb FROM sujets  WHERE id != 0;");
         $request->execute();
         $data = $request->fetch(PDO::FETCH_ASSOC);
         return $data['nb'];
@@ -31,7 +31,7 @@ class ForumManager
 
     public function getRandomSujet($nb)
     {
-        $request = $this->_bdd->prepare("SELECT * FROM `sujets` ORDER BY RAND() LIMIT $nb");
+        $request = $this->_bdd->prepare("SELECT * FROM `sujets` WHERE id != 0 ORDER BY RAND() LIMIT $nb");
         $request->execute();
         $data = $request->fetchAll(PDO::FETCH_ASSOC);
         $ret = [];
@@ -97,7 +97,7 @@ class ForumManager
     public function getSujetById($idsujet)
     {
 
-        $request = $this->_bdd->prepare("SELECT * FROM `sujets` WHERE id = $idsujet");
+        $request = $this->_bdd->prepare("SELECT * FROM `sujets` WHERE id = $idsujet AND id != 0");
         $request->execute();
         $data = $request->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -129,7 +129,7 @@ class ForumManager
 
     public function getListeForums()
     {
-        $request = $this->_bdd->prepare("SELECT id, titre, description, date FROM forums");
+        $request = $this->_bdd->prepare("SELECT id, titre, description, date FROM forums WHERE id != 0");
         $request->execute();
         return $request->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -179,7 +179,7 @@ class ForumManager
 
     public function getSujetName($sujet_id)
     {
-        $request = $this->_bdd->prepare("SELECT titre FROM sujets WHERE id = ?;");
+        $request = $this->_bdd->prepare("SELECT titre FROM sujets WHERE id = ? AND id != 0;");
         $request->execute([$sujet_id]);
         $data = $request->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -191,7 +191,7 @@ class ForumManager
 
     public function getForumIdBySujetId($sujet_id)
     {
-        $request = $this->_bdd->prepare("SELECT forum_id FROM sujets WHERE id = ?;");
+        $request = $this->_bdd->prepare("SELECT forum_id FROM sujets WHERE id = ? AND id != 0;");
         $request->execute([$sujet_id]);
         $data = $request->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -204,7 +204,7 @@ class ForumManager
 
     public function forumExiste($forum_id)
     {
-        $request = $this->_bdd->prepare("SELECT id FROM forums WHERE id = ?");
+        $request = $this->_bdd->prepare("SELECT id FROM forums WHERE id = ? AND id != 0");
         $request->execute([$forum_id]);
         $data = $request->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -216,7 +216,7 @@ class ForumManager
 
     public function sujetExiste($sujet_id)
     {
-        $request = $this->_bdd->prepare("SELECT id FROM sujets WHERE id = ?");
+        $request = $this->_bdd->prepare("SELECT id FROM sujets WHERE id = ? AND id != 0");
         $request->execute([$sujet_id]);
         $data = $request->fetch(PDO::FETCH_ASSOC);
         if ($data) {
