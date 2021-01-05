@@ -96,7 +96,7 @@ if (isset($_GET['sujet'])) {
             <div class="container my-3">
 
                 <nav class="breadcrumb ">
-                    <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a id="listesujets" href="/AJAX/php/sujets.php?forum=<?php echo $forum; ?>"><?php echo $ForumManager->getForumName($forum); ?></a> &nbsp;/&nbsp; <a href="/AJAX/php/posts.php?sujet=<?php echo $sujet; ?>"><?php echo $ForumManager->getSujetName($sujet); ?></a> </h6>
+                    <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a id="listesujets" href="/AJAX/php/sujets.php?forum=<?php echo $forum; ?>"><?php echo $ForumManager->getForumName($forum); ?></a> &nbsp;/&nbsp; <a href="/AJAX/php/posts.php?sujet=<?php echo $sujet; ?>"class="font-weight-bold"><?php echo $ForumManager->getSujetName($sujet); ?></a> </h6>
                 </nav>
 
                 <div class="row">
@@ -155,10 +155,14 @@ if (isset($_GET['sujet'])) {
                                                 <?php if ($listemessages[$i]->getId_parent() != null) {
                                                 ?>
                                                     <div class="media-body">En réponse à :
-                                                    <?php if($listemessages[$i]->getId_parent() == 0){
+                                                        <?php if ($listemessages[$i]->getId_parent() == 0) {
                                                         ?>
-                                                        <a href="#<?php echo $listemessages[$i]->getId_parent(); ?>"><?php echo $listemessages[$i]->getId_parent(); ?></a>
-                                                        <a href="#<?php echo $listemessages[$i]->getId_parent(); ?>"><?php echo $listemessages[$i]->getId_parent(); ?></a>
+                                                            <a href="#">Message supprimé</a>
+                                                        <?php } else {
+                                                        ?>
+
+                                                            <a href="#<?php echo $listemessages[$i]->getId_parent(); ?>"><?php echo $listemessages[$i]->getId_parent(); ?></a>
+                                                        <?php } ?>
                                                     </div>
                                                 <?php }
                                                 ?>

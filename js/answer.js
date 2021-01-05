@@ -74,6 +74,8 @@ function sendAnswer(id = null) {
         }
         sendAJAX(newformdata, "/AJAX/ajax/sendmessage.php", receiveMessageConfirmation);
 
+    } else {
+        alert("Le message doit faire au moins 10 caractères");
     }
 
 }
@@ -88,7 +90,7 @@ function receiveMessageConfirmation(data) {
 function receiveDeleteMessage(data) {
     console.log(data);
     if (data == 'success') {
-        //document.location.reload();
+        document.location.reload();
     }
 }
 

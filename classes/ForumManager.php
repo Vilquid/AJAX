@@ -275,10 +275,6 @@ class ForumManager
 
     public function supprimerMessage($id)
     {
-        $request = $this->_bdd->prepare("SELECT * FROM messages WHERE id_parent = ?");
-        $request->execute([$id]);
-        print_r($request->fetch(PDO::FETCH_ASSOC));
-
         $request = $this->_bdd->prepare("UPDATE messages SET id_parent = 0 WHERE id_parent = ?");
         $request->execute([$id]);
 
