@@ -96,7 +96,7 @@ if (isset($_GET['sujet'])) {
             <div class="container my-3">
 
                 <nav class="breadcrumb ">
-                    <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a id="listesujets" href="/AJAX/php/sujets.php?forum=<?php echo $forum; ?>"><?php echo $ForumManager->getForumName($forum); ?></a> &nbsp;/&nbsp; <a href="/AJAX/php/posts.php?sujet=<?php echo $sujet; ?>"class="font-weight-bold"><?php echo $ForumManager->getSujetName($sujet); ?></a> </h6>
+                    <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a id="listesujets" href="/AJAX/php/sujets.php?forum=<?php echo $forum; ?>"><?php echo $ForumManager->getForumName($forum); ?></a> &nbsp;/&nbsp; <a href="/AJAX/php/posts.php?sujet=<?php echo $sujet; ?>" class="font-weight-bold"><?php echo $ForumManager->getSujetName($sujet); ?></a> </h6>
                 </nav>
 
                 <div class="row">
@@ -236,8 +236,8 @@ if (isset($_GET['sujet'])) {
                     ?>
                 </div>
             </div>
-
-            <script src=" /AJAX/js/answer.js"></script>
+            
+                                        <script src=" /AJAX/js/answer.js"></script>
                                         <script src=" /AJAX/js/XHR.js"></script>
                                         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
                                         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

@@ -138,3 +138,4 @@ function test2(id) {
     showEditBox2(id);
     showSendButton(id);
 }
+
