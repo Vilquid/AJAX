@@ -225,4 +225,31 @@ class ForumManager
             return 0;
         }
     }
+
+    public function verifMessageSujet($parent, $sujet_id)
+    {
+        $request = $this->_bdd->prepare("SELECT id_sujet FROM messages WHERE id = ?");
+        $request->execute([$parent]);
+        $data = $request->fetch(PDO::FETCH_ASSOC);
+        if ($data) {
+            if ($sujet_id == $data['id_sujet']) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function addMessage($message, $sujet_id, $parent, $user_id)
+    {
+        if ($parent) {
+            $request = $this->_bdd->prepare("INSERT INTO messages (id_parent,message, id_sujet,id_user) VALUES (?,?,?,?)");
+            $request->execute([$parent, $message, $sujet_id, $user_id]);
+        } else {
+            $request = $this->_bdd->prepare("INSERT INTO messages (message, id_sujet,id_user) VALUES (?,?,?)");
+            $request->execute([$message, $sujet_id, $user_id]);
+        }
+    }
 }

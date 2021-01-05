@@ -5,6 +5,8 @@ var revertbutton = document.getElementById("RevertChange");
 var answerbutton = document.getElementById("answerbutton");
 
 var area = document.createElement("textarea");
+area.setAttribute("minlength", "10");
+area.setAttribute("required", "");
 
 function showEditBox() {
     if (container) {
@@ -30,10 +32,10 @@ function showEditBox2(id) {
     }
 }
 
-function showSendButton() {
+function showSendButton(id = "") {
     sendbutton.innerHTML = "Envoyer la réponse";
     sendbutton.setAttribute("class", "btn btn-primary btn-success btn-lg btn-block");
-    sendbutton.setAttribute("onclick", "sendAnswer()");
+    sendbutton.setAttribute("onclick", "sendAnswer(" + id + ")");
 
     revertbutton.innerHTML = "Annuler";
     revertbutton.setAttribute("class", "btn btn-primary btn-secondary btn-lg btn-block");
@@ -61,8 +63,37 @@ function revertChange() {
 
 }
 
-function sendAnswer() {
+function sendAnswer(id = null) {
+    if (area.checkValidity()) {
+        let newformdata = new FormData();
+        newformdata.append("message", area.value);
+        let urlParser = new URLSearchParams(document.location.search);
+        newformdata.append("sujet", urlParser.get("sujet"));
+        if (id) {
+            newformdata.append("parent", id);
+        }
+        sendAJAX(newformdata, "/AJAX/ajax/sendmessage.php", receiveMessageConfirmation);
 
+    }
+
+}
+
+function receiveMessageConfirmation(data) {
+    console.log(data);
+    if (data == 'success') {
+        document.location.reload();
+    }
+}
+
+function sendAJAX(formData, url, callback) {
+    let xhr = getXMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            callback(xhr.responseText);
+        }
+    };
+    xhr.open("POST", url, true);
+    xhr.send(formData);
 }
 
 
@@ -73,5 +104,5 @@ function test1() {
 
 function test2(id) {
     showEditBox2(id);
-    showSendButton();
+    showSendButton(id);
 }
