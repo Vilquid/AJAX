@@ -21,5 +21,5 @@ function getDureeAvecDateTime($datetime){
 
 function getDateAvecDateTime($datetime){
     $date = new DateTime($datetime);
-    return $date->format('%D/%M/%Y');
+    return $date->format('d/m/Y');
 }

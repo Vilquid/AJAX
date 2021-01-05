@@ -78,6 +78,18 @@ class UserManager
 		}
 	}
 
+	public function getUserPosts($id)
+	{
+		$request = $this->_bdd->prepare("SELECT count(id) AS nb FROM messages WHERE id_user = ?");
+		$request->execute([$id]);
+		$data = $request->fetch(PDO::FETCH_ASSOC);
+		if ($data) {
+			return $data['nb'];
+		} else {
+			return 0;
+		}
+	}
+
 	public function addUser($pseudo, $email, $password)
 	{
 		$hash_password = password_hash($password, PASSWORD_BCRYPT, $this->_password_crypt_option);

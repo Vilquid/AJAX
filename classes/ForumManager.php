@@ -63,6 +63,40 @@ class ForumManager
         }
     }
 
+
+    public function getMessageBySujet($idsujet)
+    {
+
+        $request = $this->_bdd->prepare("SELECT * FROM `messages` WHERE id_sujet = $idsujet ORDER BY date ASC");
+        $request->execute();
+        $data = $request->fetchAll(PDO::FETCH_ASSOC);
+        $ret = [];
+        for ($i = 0; $i < count($data); $i++) {
+            $ret[$i] = new ElementMessage($data[$i]);
+        }
+        if (count($data)) {
+            return $ret;
+        } else {
+            return null;
+        }
+    }
+
+
+
+    public function getSujetById($idsujet)
+    {
+
+        $request = $this->_bdd->prepare("SELECT * FROM `sujets` WHERE id = $idsujet");
+        $request->execute();
+        $data = $request->fetch(PDO::FETCH_ASSOC);
+        if ($data) {
+            return new ElementSujet($data);
+        } else {
+            return null;
+        }
+    }
+
+
     public function getNombreReponsesSujet($id)
     {
         $request = $this->_bdd->prepare("SELECT count(id) AS nb FROM `messages` WHERE id_sujet = ?");

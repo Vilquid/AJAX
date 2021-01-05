@@ -8,6 +8,11 @@ if (isset($_GET['sujet'])) {
         $sujet = $_GET['sujet'];
         $forum = $ForumManager->getForumIdBySujetId($_GET['sujet']);
 
+
+        $sujetelement = $ForumManager->getSujetById($sujet);
+        $sujetuser = $Usermanager->getUserClientById($sujetelement->getUser_id());
+        $nbpost = $Usermanager->getUserPosts($sujetelement->getUser_id());
+
 ?>
 
         <!DOCTYPE html>
@@ -94,78 +99,119 @@ if (isset($_GET['sujet'])) {
                     <h6 class="breadcrumb-item active"><a href="/AJAX/php/forums.php">Forums</a> &nbsp;/&nbsp; <a href="/AJAX/php/sujets.php?forum=<?php echo $forum; ?>"><?php echo $ForumManager->getForumName($forum); ?></a> &nbsp;/&nbsp; <a href="/AJAX/php/posts.php?sujet=<?php echo $sujet; ?>"><?php echo $ForumManager->getSujetName($sujet); ?></a> </h6>
                 </nav>
 
-
-
-
                 <div class="row">
                     <div class="container-fluid mt-100">
                         <div class="col-md-12">
-                            <h2 class="h4 category mb-0 p-4 rounded-top text-light">Les origines de OuahJax</h2>
+                            <h2 class="h4 category mb-0 p-4 rounded-top text-light"><?php echo $sujetelement->getTitre(); ?></h2>
                         </div>
 
                         <div class="col-md-12">
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <div class="media flex-wrap w-100 align-items-center"> <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/64/avatar-default-icon.png" class="d-block ui-w-40 rounded-circle" alt="">
-                                        <div class="media-body ml-3"><a href="javascript:void(0)" data-abc="true">David
-                                                Gousserand</a>
-                                            <div class="text-muted small">Il y a 5 jours</div>
+                                    <div class="media flex-wrap w-100 align-items-center"> <img src="<?php echo $sujetuser->getRealPhoto(); ?>" class="d-block ui-w-40 rounded-circle" alt="" height="64" width="64">
+                                        <div class="media-body ml-3"><a href="javascript:void(0)" data-abc="true"><?php echo $sujetuser->getPseudo(); ?></a>
+                                            <div class="text-muted small">Il y a <?php echo getDureeAvecDateTime($sujetelement->getDate_post()); ?></div>
                                         </div>
                                         <div class="text-muted small ml-3">
-                                            <div>Membre depuis <strong>05/12/2020</strong></div>
-                                            <div><strong>134</strong> posts</div>
+                                            <div>Membre depuis <strong><?php echo getDateAvecDateTime($sujetuser->getDate_creation()); ?></strong></div>
+                                            <div><strong><?php echo $nbpost; ?></strong> posts</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <p> Le projet OuahJax</p><br><br>
-                                    <p>Je ne sais pas quoi dire ...</p>
-
+                                    <p><?php echo $sujetelement->getMessage(); ?></p>
                                 </div>
-                                <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
 
-                                    <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
-                                </div>
+                                <?php
+                                if (!connected()) {
+                                    if ($sujetuser->getId() == $connected_user->getId()) {
+                                ?>
+                                        <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+
+                                            <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
+                                        </div>
+                                <?php }
+                                } ?>
+
+
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <div class="media flex-wrap w-100 align-items-center"> <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/64/avatar-default-icon.png" class="d-block ui-w-40 rounded-circle" alt="">
-                                        <div class="media-body ml-3"> <a href="javascript:void(0)" data-abc="true">Random du
-                                                net</a>
-                                            <div class="text-muted small">Il y a 1 jour</div>
-                                        </div>
-                                        <div class="text-muted small ml-3">
-                                            <div>Membre depuis <strong>05/12/2020</strong></div>
-                                            <div><strong>134</strong> posts</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <p>D'accord</p>
-                                </div>
-                                <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3 ">
-                                    <div class="px-4 pt-3">
-                                        <?php
-                                        if (!$connected_user) {
-                                        ?>
-                                            <a href="/AJAX/php/login.php" onclick=""><button type="button" class="btn btn-sm btn-outline-danger">Répondre</button></a>
 
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <a href="#TextAreaLocation" style="text-decoration: none;"><button id="answerbutton" onclick="test2()" type="button" class="btn btn-sm btn-outline-danger">Répondre</button></a>
-                                        <?php
-                                        }
-                                        ?>
+                        <?php $listemessages = $ForumManager->getMessageBySujet($sujet);
+                        if ($listemessages) {
+
+                            for ($i = 0; $i < count($listemessages); $i++) {
+                                $sujetuser = $Usermanager->getUserClientById($listemessages[$i]->getId_user());
+                                $nbpost = $Usermanager->getUserPosts($listemessages[$i]->getId_user());
+                        ?>
+                                <div class="col-md-12">
+                                    <div class="card mb-4" id="<?php echo $listemessages[$i]->getId(); ?>">
+                                        <div class="card-header">
+                                            <div class="media flex-wrap w-100 align-items-center"> <img src="<?php echo $sujetuser->getRealPhoto(); ?>" class="d-block ui-w-40 rounded-circle" alt="" height="64" width="64">
+                                                <div class="media-body ml-3"><a href="javascript:void(0)" data-abc="true"><?php echo $sujetuser->getPseudo(); ?></a>
+                                                    <div class="text-muted small">Il y a <?php echo getDureeAvecDateTime($listemessages[$i]->getDate()); ?></div>
+                                                </div>
+                                                <?php if ($listemessages[$i]->getId_parent()) {
+                                                ?>
+                                                    <div class="media-body">En réponse à :
+                                                        <a href="#<?php echo $listemessages[$i]->getId_parent(); ?>"><?php echo $listemessages[$i]->getId_parent(); ?></a>
+                                                    </div>
+                                                <?php }
+                                                ?>
+
+                                                <div class="text-muted small ml-3">
+                                                    <div>Membre depuis <strong><?php echo getDateAvecDateTime($sujetuser->getDate_creation()); ?></strong></div>
+                                                    <div><strong><?php echo $nbpost; ?></strong> posts</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="message"><?php echo $listemessages[$i]->getMessage(); ?></p>
+                                        </div>
+                                        <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                                            <div class="px-4 pt-3">
+                                                <?php
+                                                if (!$connected_user) {
+                                                ?>
+                                                    <a href="/AJAX/php/login.php" onclick=""><button type="button" class="btn btn-sm btn-outline-danger">Répondre</button></a>
+
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <a href="#TextAreaLocation" style="text-decoration: none;"><button id="answerbutton" onclick="test2(<?php echo $listemessages[$i]->getId(); ?>)" type="button" class="btn btn-sm btn-outline-danger">Répondre</button></a>
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+
+                                            <?php
+                                            if (!connected()) {
+                                                if ($sujetuser->getId() == $connected_user->getId()) {
+                                            ?>
+                                                    <div class="px-4 pt-3"> <a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a> </div>
+
+                                            <?php }
+                                            } ?>
+                                        </div>
+
+
                                     </div>
-                                    <div class="px-4 pt-3"><a href="javascript:void(0)" data-abc="true"> <i class="fa fa-trash-alt text-danger"></i></a></div>
                                 </div>
-                            </div>
-                            <div id="TextAreaLocation"></div>
-                        </div>
+
+                        <?php
+                            }
+                        }
+
+
+
+
+                        ?>
+
+
+
+                        <div class="col-md-12" id="AnswerContainer" style="display: none;"></div>
+                        <div class="col-md-12" id="TextAreaLocation"></div>
 
                         <div class="col-md-12">
                             <?php

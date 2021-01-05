@@ -1,4 +1,5 @@
 var container = document.getElementById("TextAreaLocation");
+var container2 = document.getElementById("AnswerContainer");
 var sendbutton = document.getElementById("Send");
 var revertbutton = document.getElementById("RevertChange");
 var answerbutton = document.getElementById("answerbutton");
@@ -15,10 +16,13 @@ function showEditBox() {
     }
 }
 
-function showEditBox2() {
+function showEditBox2(id) {
     if (container) {
+        let message = document.getElementById(id).getElementsByClassName("message")[0].innerHTML;
         area.setAttribute("class", "form-control mb-4");
-        area.setAttribute("placeholder", "Répondre à xxxxxxxx");
+        area.setAttribute("placeholder", "Répondre à : " + message);
+        container2.innerHTML = "Répondre à : " + message;
+        container2.style.display = "block";
         container.appendChild(area);
 
     } else {
@@ -36,7 +40,6 @@ function showSendButton() {
     revertbutton.setAttribute("style", "display:block;");
     revertbutton.setAttribute("onclick", "revertChange()");
 
-    answerbutton.removeAttribute("onclick");
 
 }
 
@@ -49,10 +52,12 @@ function revertChange() {
     area.value = "";
     area.remove();
 
+    container2.innerHTML = "";
+    container2.style.display = "none";
+
     revertbutton.setAttribute("style", "display:none;");
 
     sendbutton.setAttribute("onclick", "test1()");
-    answerbutton.setAttribute("onclick", "test2()");
 
 }
 
@@ -66,7 +71,7 @@ function test1() {
     showSendButton();
 }
 
-function test2() {
-    showEditBox2();
+function test2(id) {
+    showEditBox2(id);
     showSendButton();
 }
